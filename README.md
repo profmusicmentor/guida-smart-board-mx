@@ -20,9 +20,12 @@ Questa guida nasce per superare le difficoltà pratiche e metodologiche più com
    * Le 3 modalità di avvio (Autonoma con iQ, Connessa a PC tramite USB-C/HDMI+Touch, Senza fili BYOD).
    * La regola d'oro di **Object Awareness™**: zero menu da cliccare, riconoscimento immediato di Penna (scrive), Pen ID™ (colori distinti simultanei), Dito (sposta/ingrandisce) e Palmo (cancella).
 
-2. **Modulo 2 • Lavagna iQ, Split Screen Multitasking & Ecosistema Lumio**
+2. **Modulo 2 • Lavagna iQ, Schermo Diviso (Split Screen & PiP) & Lumio**
    * Uso della Whiteboard autonoma con sfondi dedicati (quadretti 4mm/5mm, righe primaria, pentagramma musicale, fondo panna ad alto contrasto per dislessia/DSA).
-   * **Split Screen 50/50:** affiancare il browser web o YouTube agli appunti live della lavagna.
+   * **Dividere lo Schermo in 2 Parti (Split Screen & PiP):**
+     * *Metodo 1 (Nativo iQ):* Tasto *App Recenti (▢)* $\rightarrow$ *Dividi Schermo* $\rightarrow$ Scegli la seconda app (es. Browser Web a sinistra + Lavagna iQ a destra con regolazione 50/50 o 70/30).
+     * *Metodo 2 (PC HDMI + Lavagna):* App *Picture-in-Picture (PiP)* per affiancare il portatile collegato via cavo HDMI agli appunti della lavagna.
+     * *Metodo 3 (PC Windows):* Scorciatoia `Win + ⬅️ / ➡️` (Snap Assist) con annotazione simultanea via SMART Ink.
    * Le 3 modalità collaborative di Lumio (*Guida Docente Sincrona*, *Scheda Individuale Handout*, *Workspace a Squadre*).
 
 3. **Modulo 3 • Proiezione Wireless a 4 Quadranti (Griglia 2x2) & Touchback**

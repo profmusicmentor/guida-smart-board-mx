@@ -451,41 +451,211 @@
                 </div>
             </div>
 
-            <!-- Schermo Diviso (Split Screen) e Login Cloud -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-lg font-bold text-slate-900">Modalità Schermo Diviso (Split Screen)</h3>
-                        <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2.5 py-1 rounded">Browser + Lavagna</span>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Non serve passare continuamente dal browser alla lavagna: affianca due app sullo schermo per costruire mappe o appunti mentre consulti una fonte.
-                    </p>
-                    <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900 rounded-xl text-white text-xs">
-                        <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
-                            <span class="text-sky-400 font-bold block mb-1">🌐 Lato Sinistro: Browser</span>
-                            <p class="text-[11px] text-slate-300">Articolo di giornale, simulazione PhET, Wikipedia o video YouTube senza pubblicità.</p>
+            <!-- GUIDA & SIMULATORE SCHERMO DIVISO (SPLIT SCREEN & PIP) -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="badge-edu">Multitasking su Display 4K</span>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full">Split Screen & PiP</span>
                         </div>
-                        <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
-                            <span class="text-emerald-400 font-bold block mb-1">✍️ Lato Destro: Lavagna iQ</span>
-                            <p class="text-[11px] text-slate-300">Gli studenti costruiscono in tempo reale la mappa concettuale o risolvono l'esercizio.</p>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Come Dividere lo Schermo in 2 Parti (Split Screen & PiP)</h2>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            Vuoi consultare una fonte e scrivere appunti contemporaneamente? Ecco tutti i metodi operativi per avere <strong>2 cose diverse aperte nelle due metà dello schermo</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Le 3 Modalità a Confronto -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Modalità 1: iQ Nativo -->
+                    <div class="p-4 rounded-xl border-2 border-sky-300 bg-sky-50/50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-sky-800 uppercase bg-sky-200/80 px-2 py-0.5 rounded">1. Senza PC (iQ Nativo)</span>
+                                <span class="text-lg">📱</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1.5">Split Screen tra 2 App Interne</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                Affianca ad esempio il <strong>Browser Web</strong> a sinistra e la <strong>Lavagna iQ</strong> a destra.
+                            </p>
+                            <ol class="text-xs text-slate-700 space-y-1.5 list-decimal list-inside bg-white/80 p-2.5 rounded-lg border border-sky-200">
+                                <li>Apri la prima app (es. <em>Lavagna</em>).</li>
+                                <li>Tocca il tasto <strong>App Recenti (▢)</strong> nella barra inferiore o laterale.</li>
+                                <li>Sulla scheda dell'app tocca <strong>Dividi Schermo</strong> (o <em>Dividi a sinistra</em>).</li>
+                                <li>Tocca la seconda app (es. <em>Browser</em>) per occupare l'altra metà.</li>
+                            </ol>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-sky-200 text-[11px] text-sky-900 font-medium">
+                            ↔️ Trascina la barra nera centrale per regolare la larghezza (50/50 o 70/30).
+                        </div>
+                    </div>
+
+                    <!-- Modalità 2: Picture-in-Picture -->
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-amber-800 uppercase bg-amber-100 px-2 py-0.5 rounded">2. PC HDMI + Lavagna</span>
+                                <span class="text-lg">💻</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1.5">Picture-in-Picture (PiP)</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                Vuoi vedere il tuo portatile via cavo HDMI e intanto usare la Lavagna iQ?
+                            </p>
+                            <ol class="text-xs text-slate-700 space-y-1.5 list-decimal list-inside bg-white p-2.5 rounded-lg border border-slate-200">
+                                <li>Dalla schermata Home tocca <strong>App</strong>.</li>
+                                <li>Apri l'app <strong>Picture-in-Picture (PiP)</strong>.</li>
+                                <li>Seleziona la porta <strong>HDMI 1</strong> (il tuo PC).</li>
+                                <li>Il PC appare in una finestra fluttuante: allargala per coprire metà schermo accanto alla lavagna!</li>
+                            </ol>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-200 text-[11px] text-amber-700 font-medium">
+                            💡 Risolve l'impossibilità di dividere a metà un segnale video HDMI con Android.
+                        </div>
+                    </div>
+
+                    <!-- Modalità 3: PC Windows Snap Assist -->
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-purple-800 uppercase bg-purple-100 px-2 py-0.5 rounded">3. Connessa a PC Windows</span>
+                                <span class="text-lg">⌨️</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1.5">Snap Assist (Tasti Windows)</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                Se la SMART Board sta visualizzando il computer di cattedra con cavo touch:
+                            </p>
+                            <ol class="text-xs text-slate-700 space-y-1.5 list-decimal list-inside bg-white p-2.5 rounded-lg border border-slate-200">
+                                <li>Clicca sulla prima finestra (es. Libro Digitale) e premi <code>Win + ⬅️</code>.</li>
+                                <li>Clicca sulla seconda finestra (es. PowerPoint) e premi <code>Win + ➡️</code>.</li>
+                                <li>Le due finestre si incastrano a metà schermo perfetta.</li>
+                                <li>Con <strong>SMART Ink</strong> puoi scrivere con le penne su entrambi i programmi!</li>
+                            </ol>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-200 text-[11px] text-purple-700 font-medium">
+                            ⚡ Il metodo più veloce quando fai lezione usando il computer.
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-lg font-bold text-slate-900">Profilo Docente, Cloud & Logout Sicuro</h3>
-                        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded">Google & Microsoft</span>
+                <!-- SIMULATORE INTERATTIVO SPLIT SCREEN -->
+                <div class="p-5 bg-slate-900 rounded-2xl border border-slate-800 text-white">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-3">
+                        <div>
+                            <h3 class="font-bold text-base text-white flex items-center gap-2">
+                                <span>🖥️</span> Simulatore Didattico di Split Screen (Prova i 4 Scenari d'Aula)
+                            </h3>
+                            <p class="text-xs text-slate-300">Scegli cosa mostrare nelle due metà e prova a cambiare le proporzioni del display:</p>
+                        </div>
+                        <!-- Selettore Proporzioni 50/50 o 70/30 -->
+                        <div class="flex items-center space-x-1.5 bg-slate-800 p-1 rounded-lg border border-slate-700 text-xs">
+                            <span class="text-[10px] text-slate-400 px-1 font-semibold">Proporzione:</span>
+                            <button onclick="setSplitRatio(50)" id="split-ratio-50" class="px-2.5 py-1 rounded bg-sky-600 text-white font-bold text-[11px]">50% / 50%</button>
+                            <button onclick="setSplitRatio(70)" id="split-ratio-70" class="px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 text-slate-200 text-[11px]">70% Fonte / 30% Note</button>
+                            <button onclick="setSplitRatio(30)" id="split-ratio-30" class="px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 text-slate-200 text-[11px]">30% Fonte / 70% Lavagna</button>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Accedendo con il tuo account scolastico (tramite <strong>QR Code dallo smartphone</strong> o badge NFC), ritrovi immediatamente le tue cartelle <strong>Google Drive</strong> o <strong>OneDrive</strong>.
-                    </p>
-                    <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-slate-700 space-y-1.5">
-                        <div class="font-bold text-amber-900">🔐 Regola di Sicurezza al Cambio d'Ora:</div>
-                        <p class="text-[11px] leading-relaxed">
-                            Tocca sempre l'icona del tuo profilo in alto a sinistra e premi <strong>"Esci" (Logout)</strong>: la SMART Board chiude in automatico Drive, email e sessioni personali lasciando il pannello pulito per il collega successivo.
+
+                    <!-- Bottoni Scenari -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                        <button onclick="setSplitScenario('browser-whiteboard')" id="split-scenario-btn-bw" class="p-2.5 rounded-xl border-2 border-sky-400 bg-slate-800 text-left transition hover:bg-slate-700">
+                            <span class="text-xs font-bold text-sky-300 block">🌐 1. Browser + Lavagna</span>
+                            <span class="text-[10px] text-slate-400">Mappa concettuale da fonti web</span>
+                        </button>
+                        <button onclick="setSplitScenario('phet-stem')" id="split-scenario-btn-phet" class="p-2.5 rounded-xl border-2 border-slate-700 bg-slate-800 text-left transition hover:bg-slate-700">
+                            <span class="text-xs font-bold text-slate-200 block">🧪 2. Simulatore PhET + Formule</span>
+                            <span class="text-[10px] text-slate-400">Laboratorio scientifico e calcoli</span>
+                        </button>
+                        <button onclick="setSplitScenario('video-notes')" id="split-scenario-btn-video" class="p-2.5 rounded-xl border-2 border-slate-700 bg-slate-800 text-left transition hover:bg-slate-700">
+                            <span class="text-xs font-bold text-slate-200 block">🎬 3. Video YouTube + Schema</span>
+                            <span class="text-[10px] text-slate-400">Analisi visiva e presa appunti</span>
+                        </button>
+                        <button onclick="setSplitScenario('pip-hdmi')" id="split-scenario-btn-pip" class="p-2.5 rounded-xl border-2 border-slate-700 bg-slate-800 text-left transition hover:bg-slate-700">
+                            <span class="text-xs font-bold text-slate-200 block">💻 4. PC HDMI (PiP) + Note iQ</span>
+                            <span class="text-[10px] text-slate-400">Libro su PC e sintesi alla lavagna</span>
+                        </button>
+                    </div>
+
+                    <!-- Schermo Diviso Simulato -->
+                    <div class="bg-slate-950 p-2 sm:p-3 rounded-xl border-2 border-slate-800">
+                        <div id="split-screen-box" class="flex flex-col sm:flex-row gap-2 min-h-[220px] transition-all duration-300">
+                            <!-- Metà Sinistra -->
+                            <div id="split-left-pane" class="w-full sm:w-1/2 bg-slate-800/90 rounded-lg p-4 border border-sky-500/50 flex flex-col justify-between transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span id="split-left-badge" class="text-[10px] bg-sky-900 text-sky-200 font-bold px-2 py-0.5 rounded">🌐 App 1 • Browser Web iQ</span>
+                                        <span class="text-[10px] text-slate-400">Interazione con il Dito</span>
+                                    </div>
+                                    <h4 id="split-left-title" class="text-sm font-bold text-white mb-1">Enciclopedia Treccani / Articolo di Attualità</h4>
+                                    <p id="split-left-content" class="text-xs text-slate-300 leading-relaxed">
+                                        Lettura collettiva del documento. Il docente o gli studenti scorrono la pagina, evidenziano parole chiave o guardano un grafico interattivo.
+                                    </p>
+                                </div>
+                                <div class="mt-3 pt-2 border-t border-slate-700 flex justify-between items-center text-[10px] text-slate-400">
+                                    <span>Stato: Indipendente e navigabile</span>
+                                    <span class="text-sky-300 font-semibold">Schermo Sinistro</span>
+                                </div>
+                            </div>
+
+                            <!-- Barra Divisoria Centrale Virtuale -->
+                            <div class="hidden sm:flex items-center justify-center w-2 bg-slate-700 rounded-full cursor-col-resize hover:bg-sky-400 transition" title="Trascina per ridimensionare o chiudere">
+                                <div class="w-1 h-8 bg-slate-400 rounded-full"></div>
+                            </div>
+
+                            <!-- Metà Destra -->
+                            <div id="split-right-pane" data-theme="cream" class="w-full sm:w-1/2 bg-dyslexia-cream rounded-lg p-4 border border-emerald-500/50 text-slate-800 flex flex-col justify-between transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span id="split-right-badge" class="text-[10px] bg-emerald-900 text-emerald-100 font-bold px-2 py-0.5 rounded">✍️ App 2 • Lavagna iQ (Sfondo Crema)</span>
+                                        <span class="text-[10px] text-slate-600 font-semibold">Interazione con le Penne</span>
+                                    </div>
+                                    <h4 id="split-right-title" class="text-sm font-bold text-slate-900 mb-1">Mappa Concettuale Co-Costruita in Classe</h4>
+                                    <p id="split-right-content" class="text-xs text-slate-700 leading-relaxed font-medium">
+                                        Gli studenti impugnano la penna fisica e sintetizzano le tesi principali della lettura a fianco. Con il palmo cancellano, con il dito spostano i riquadri.
+                                    </p>
+                                </div>
+                                <div class="mt-3 pt-2 border-t border-slate-300 flex justify-between items-center text-[10px] text-slate-600">
+                                    <span id="split-right-footer">Salvataggio automatico multipagina</span>
+                                    <span class="font-bold text-emerald-800">Schermo Destro</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spiegazione Didattica dello Scenario Selezionato -->
+                    <div id="split-scenario-tip" class="mt-3 p-3 bg-slate-800 rounded-xl border border-slate-700 text-xs text-slate-300 flex items-start gap-2.5">
+                        <span class="text-lg">💡</span>
+                        <div id="split-scenario-tip-text">
+                            <strong>Consiglio Metodologico (Browser + Lavagna):</strong> Perfetto per abituare gli alunni alla selezione critica delle informazioni da internet. Mentre a sinistra si analizza la fonte originale, a destra si fissano le definizioni essenziali pronte da esportare in PDF per il ripasso pomeridiano.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box Profilo Docente Cloud & Logout Sicuro (Mantenuto e integrato con FAQ Split Screen) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-slate-900">Domande Frequenti sullo Split Screen</h3>
+                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-bold">FAQ Rapide</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>• <strong>Come si esce dallo Split Screen?</strong> Trascina la barra nera centrale tutta verso destra (per tenere la sola app di sinistra) o tutta verso sinistra (per tenere quella di destra).</li>
+                            <li>• <strong>Posso scrivere su entrambe le metà?</strong> Sì! Con la penna fisica della SMART Board puoi scrivere contemporaneamente sia sulla lavagna sia sopra il browser tramite SMART Ink.</li>
+                            <li>• <strong>Funziona con le app Google Workspace?</strong> Sì, su iQ con Google EDLA puoi affiancare Google Documenti, Presentazioni o Drive.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-amber-200 bg-amber-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-amber-950">Profilo Docente, Cloud & Logout al Cambio d'Ora</h3>
+                            <span class="text-[10px] bg-amber-200 text-amber-900 font-bold px-2 py-0.5 rounded">Google & Microsoft</span>
+                        </div>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-2">
+                            Accedendo con il tuo account scolastico (via <strong>QR Code con lo smartphone</strong> o credenziali), ritrovi in 1 secondo le tue cartelle di <strong>Google Drive</strong> o <strong>OneDrive</strong> nelle app di iQ.
                         </p>
+                        <div class="text-[11px] text-amber-900 font-bold bg-amber-100/80 p-2 rounded-lg border border-amber-300">
+                            🔐 Al termine della lezione: tocca il tuo profilo in alto a sinistra e premi <strong>"Esci" (Logout)</strong> per proteggere la tua privacy e lasciare la lavagna pulita per l'ora successiva.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1403,6 +1573,161 @@
                 titleEl.textContent = 'Co-Costruzione di Mappe e Problem Solving in Piccoli Gruppi';
                 descEl.textContent = 'La pagina della lavagna viene condivisa con gruppi di 3-4 studenti: tutti i membri del gruppo possono scrivere, spostare oggetti e completare la mappa contemporaneamente dai rispettivi dispositivi.';
             }
+        }
+
+        // Modulo 2: Simulatore Split Screen & PiP Interattivo
+        let currentSplitRatio = 50;
+
+        function setSplitRatio(ratio) {
+            currentSplitRatio = ratio;
+            const leftPane = document.getElementById('split-left-pane');
+            const rightPane = document.getElementById('split-right-pane');
+            const btn50 = document.getElementById('split-ratio-50');
+            const btn70 = document.getElementById('split-ratio-70');
+            const btn30 = document.getElementById('split-ratio-30');
+
+            [btn50, btn70, btn30].forEach(b => {
+                if (b) b.className = 'px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 text-slate-200 text-[11px]';
+            });
+
+            if (ratio === 50) {
+                if (btn50) btn50.className = 'px-2.5 py-1 rounded bg-sky-600 text-white font-bold text-[11px]';
+                if (leftPane) leftPane.style.width = '50%';
+                if (rightPane) rightPane.style.width = '50%';
+            } else if (ratio === 70) {
+                if (btn70) btn70.className = 'px-2.5 py-1 rounded bg-sky-600 text-white font-bold text-[11px]';
+                if (leftPane) leftPane.style.width = '70%';
+                if (rightPane) rightPane.style.width = '30%';
+            } else if (ratio === 30) {
+                if (btn30) btn30.className = 'px-2.5 py-1 rounded bg-sky-600 text-white font-bold text-[11px]';
+                if (leftPane) leftPane.style.width = '30%';
+                if (rightPane) rightPane.style.width = '70%';
+            }
+        }
+
+        function setSplitScenario(scenario) {
+            const btns = {
+                'browser-whiteboard': document.getElementById('split-scenario-btn-bw'),
+                'phet-stem': document.getElementById('split-scenario-btn-phet'),
+                'video-notes': document.getElementById('split-scenario-btn-video'),
+                'pip-hdmi': document.getElementById('split-scenario-btn-pip')
+            };
+
+            Object.keys(btns).forEach(key => {
+                const btn = btns[key];
+                if (btn) {
+                    btn.className = (key === scenario)
+                        ? 'p-2.5 rounded-xl border-2 border-sky-400 bg-slate-800 text-left transition'
+                        : 'p-2.5 rounded-xl border-2 border-slate-700 bg-slate-800 text-left transition hover:bg-slate-700';
+                }
+            });
+
+            const leftBadge = document.getElementById('split-left-badge');
+            const leftTitle = document.getElementById('split-left-title');
+            const leftContent = document.getElementById('split-left-content');
+
+            const rightPane = document.getElementById('split-right-pane');
+            const rightBadge = document.getElementById('split-right-badge');
+            const rightTitle = document.getElementById('split-right-title');
+            const rightContent = document.getElementById('split-right-content');
+            const rightFooter = document.getElementById('split-right-footer');
+            const tipText = document.getElementById('split-scenario-tip-text');
+
+            if (scenario === 'browser-whiteboard') {
+                if (leftBadge) leftBadge.textContent = '🌐 App 1 • Browser Web iQ';
+                if (leftTitle) leftTitle.textContent = 'Enciclopedia Treccani / Articolo di Attualità';
+                if (leftContent) leftContent.textContent = 'Lettura collettiva del documento. Il docente o gli studenti scorrono la pagina, evidenziano parole chiave o guardano un grafico interattivo.';
+                
+                if (rightPane) {
+                    rightPane.className = 'w-full sm:w-1/2 bg-dyslexia-cream rounded-lg p-4 border border-emerald-500/50 text-slate-800 flex flex-col justify-between transition-all duration-300';
+                }
+                if (rightBadge) {
+                    rightBadge.className = 'text-[10px] bg-emerald-900 text-emerald-100 font-bold px-2 py-0.5 rounded';
+                    rightBadge.textContent = '✍️ App 2 • Lavagna iQ (Sfondo Crema)';
+                }
+                if (rightTitle) {
+                    rightTitle.className = 'text-sm font-bold text-slate-900 mb-1';
+                    rightTitle.textContent = 'Mappa Concettuale Co-Costruita in Classe';
+                }
+                if (rightContent) {
+                    rightContent.className = 'text-xs text-slate-700 leading-relaxed font-medium';
+                    rightContent.textContent = 'Gli studenti impugnano la penna fisica e sintetizzano le tesi principali della lettura a fianco. Con il palmo cancellano, con il dito spostano i riquadri.';
+                }
+                if (rightFooter) rightFooter.textContent = 'Salvataggio automatico multipagina';
+                if (tipText) tipText.innerHTML = '<strong>Consiglio Metodologico (Browser + Lavagna):</strong> Perfetto per abituare gli alunni alla selezione critica delle informazioni da internet. Mentre a sinistra si analizza la fonte originale, a destra si fissano le definizioni essenziali pronte da esportare in PDF per il ripasso pomeridiano.';
+                showToast('✓ Split Screen: Browser Web + Lavagna iQ');
+            } else if (scenario === 'phet-stem') {
+                if (leftBadge) leftBadge.textContent = '🧪 App 1 • Simulazione PhET Colorado (Browser)';
+                if (leftTitle) leftTitle.textContent = 'Laboratorio Circuiti Elettrici & Legge di Ohm';
+                if (leftContent) leftContent.textContent = 'Simulazione interattiva: si modificano resistenza (R) e tensione (V) toccando i cursori direttamente col dito sul vetro della SMART Board.';
+                
+                if (rightPane) {
+                    rightPane.className = 'w-full sm:w-1/2 bg-grid-math rounded-lg p-4 border border-blue-500/50 text-slate-900 flex flex-col justify-between transition-all duration-300';
+                }
+                if (rightBadge) {
+                    rightBadge.className = 'text-[10px] bg-blue-900 text-blue-100 font-bold px-2 py-0.5 rounded';
+                    rightBadge.textContent = '📐 App 2 • Lavagna iQ (Quadretti 5mm)';
+                }
+                if (rightTitle) {
+                    rightTitle.className = 'text-sm font-bold text-blue-950 mb-1';
+                    rightTitle.textContent = 'Tabella Dati Sperimentali: V = R · I';
+                }
+                if (rightContent) {
+                    rightContent.className = 'text-xs text-slate-800 leading-relaxed font-mono';
+                    rightContent.textContent = 'Risoluzione guidata degli esercizi con la penna. Gli alunni annotano i valori registrati nella simulazione e tracciano la retta del grafico cartesiano.';
+                }
+                if (rightFooter) rightFooter.textContent = 'Strumenti attivi: Righello & Calcolatrice';
+                if (tipText) tipText.innerHTML = '<strong>Consiglio Metodologico (STEM & Laboratorio):</strong> Elimina la dispersione del passaggio continuo tra schede: gli alunni vedono contemporaneamente causa ed effetto tra la variazione dei parametri fisici e la formula matematica.';
+                showToast('✓ Split Screen: Simulatore PhET + Lavagna Quadretti');
+            } else if (scenario === 'video-notes') {
+                if (leftBadge) leftBadge.textContent = '🎬 App 1 • YouTube Edu / RaiPlay (Browser)';
+                if (leftTitle) leftTitle.textContent = 'Documentario: La Rivoluzione Francese';
+                if (leftContent) leftContent.textContent = 'Riproduzione video in 4K. Il docente mette in pausa con un tocco nei momenti cruciali per focalizzare l\'attenzione sui passaggi storici.';
+                
+                if (rightPane) {
+                    rightPane.className = 'w-full sm:w-1/2 bg-dyslexia-cream rounded-lg p-4 border border-amber-500/50 text-slate-800 flex flex-col justify-between transition-all duration-300';
+                }
+                if (rightBadge) {
+                    rightBadge.className = 'text-[10px] bg-amber-900 text-amber-100 font-bold px-2 py-0.5 rounded';
+                    rightBadge.textContent = '📝 App 2 • Lavagna iQ (Timeline Storica)';
+                }
+                if (rightTitle) {
+                    rightTitle.className = 'text-sm font-bold text-slate-900 mb-1';
+                    rightTitle.textContent = 'Linea del Tempo: 1789 - 1799';
+                }
+                if (rightContent) {
+                    rightContent.className = 'text-xs text-slate-700 leading-relaxed font-medium';
+                    rightContent.textContent = 'Annotazione guidata degli eventi chiave: presa della Bastiglia, dichiarazione dei diritti, costituzione. Con SMART Ink si cerchiano le date cruciali.';
+                }
+                if (rightFooter) rightFooter.textContent = 'Timeline sincronizzata col video';
+                if (tipText) tipText.innerHTML = '<strong>Consiglio Metodologico (Video + Appunti):</strong> Ottimizza l\'attenzione visiva evitando pause morte. Il video a sinistra fornisce il contesto immersivo, la linea del tempo a destra fissa la memorizzazione duratura.';
+                showToast('✓ Split Screen: Video + Linea del Tempo');
+            } else if (scenario === 'pip-hdmi') {
+                if (leftBadge) leftBadge.textContent = '💻 Segnale Esterno • PC HDMI 1 (Finestra PiP)';
+                if (leftTitle) leftTitle.textContent = 'Libro di Testo Digitale su PC (HUB / bSmart)';
+                if (leftContent) leftContent.textContent = 'Il notebook del docente proietta il libro digitale sfogliabile via cavo HDMI dentro la finestra Picture-in-Picture ingrandita.';
+                
+                if (rightPane) {
+                    rightPane.className = 'w-full sm:w-1/2 bg-slate-800 rounded-lg p-4 border border-purple-500/50 text-white flex flex-col justify-between transition-all duration-300';
+                }
+                if (rightBadge) {
+                    rightBadge.className = 'text-[10px] bg-purple-900 text-purple-200 font-bold px-2 py-0.5 rounded';
+                    rightBadge.textContent = '⚡ App 2 • Lavagna iQ Nativa';
+                }
+                if (rightTitle) {
+                    rightTitle.className = 'text-sm font-bold text-white mb-1';
+                    rightTitle.textContent = 'Sintesi per Punti Chiave & Eserciziario';
+                }
+                if (rightContent) {
+                    rightContent.className = 'text-xs text-slate-300 leading-relaxed';
+                    rightContent.textContent = 'Mentre il libro digitale scorre a sinistra sul PC, a destra la lavagna nativa raccoglie domande, chiarimenti e schemi dei ragazzi.';
+                }
+                if (rightFooter) rightFooter.textContent = 'Sorgente PC + iQ simultanei';
+                if (tipText) tipText.innerHTML = '<strong>Consiglio Tecnico (Picture-in-Picture):</strong> È la soluzione perfetta quando vuoi combinare i software del tuo computer personale (che richiedono licenza Windows/Mac) con la comodità della lavagna digitale autonoma della SMART Board.';
+                showToast('✓ Picture-in-Picture: PC HDMI + Lavagna');
+            }
+
+            setSplitRatio(currentSplitRatio);
         }
 
         // Modulo 3: Gestione Griglia 2x2 & Focus Singoli Gruppi
