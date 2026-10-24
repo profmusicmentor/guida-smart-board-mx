@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Didattica e Operativa - SMART Board Serie MX per Docenti</title>
+    <!-- Google Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', ' system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a'
+                        },
+                        edu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d'
+                        },
+                        amberEdu: {
+                            50: '#fffbeb',
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 360px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 340px;
+            }
+        }
+        .badge-edu {
+            background-color: #e0effe;
+            color: #0369a1;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+        /* Sfondi simulati per l'anteprima della Lavagna iQ */
+        .bg-grid-math {
+            background-color: #ffffff;
+            background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px),
+                              linear-gradient(to bottom, #cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .bg-lines-primary {
+            background-color: #ffffff;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 18px,
+                #93c5fd 18px,
+                #93c5fd 20px,
+                transparent 20px,
+                transparent 30px,
+                #fca5a5 30px,
+                #fca5a5 32px
+            );
+        }
+        .bg-music-staff {
+            background-color: #fffef7;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                #475569 0px,
+                #475569 1.5px,
+                transparent 1.5px,
+                transparent 9px
+            );
+            background-size: 100% 45px;
+        }
+        .bg-dyslexia-cream {
+            background-color: #fdf6e3;
+            background-image: linear-gradient(to bottom, transparent 27px, #e2d8be 28px);
+            background-size: 100% 28px;
+        }
+        .bg-dark-board {
+            background-color: #0f172a;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        @media print {
+            header, footer, .no-print {
+                display: none !important;
+            }
+            section {
+                display: block !important;
+                margin-bottom: 2rem;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- NOTIFICA TOAST PER COPIA APPUNTI -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-sky-500 flex items-center space-x-3 transition-all duration-300">
+        <span class="text-sky-400 text-lg">✓</span>
+        <span id="toast-message" class="text-xs font-semibold">Copiato negli appunti!</span>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center font-extrabold text-slate-950 text-lg shadow">
+                        MX
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white">SMART Board® <span class="text-sky-400">Serie MX</span></span>
+                            <span class="hidden sm:inline-block bg-emerald-900/80 text-emerald-200 text-[11px] px-2.5 py-0.5 rounded-full font-semibold border border-emerald-600/60">Edizione Potenziata</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 hidden sm:block">Guida Metodologico-Didattica e Operativa per Docenti</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden xl:flex items-center space-x-1 text-xs font-medium">
+                    <button onclick="switchTab('didattica-gesti')" id="nav-didattica-gesti" class="px-3 py-2 rounded-lg hover:bg-slate-800 transition">1. Primi 60s & Gesti</button>
+                    <button onclick="switchTab('iq-lumio')" id="nav-iq-lumio" class="px-3 py-2 rounded-lg hover:bg-slate-800 transition">2. Lavagna iQ & Lumio</button>
+                    <button onclick="switchTab('condivisione-aula')" id="nav-condivisione-aula" class="px-3 py-2 rounded-lg hover:bg-slate-800 transition">3. Wireless & Touchback</button>
+                    <button onclick="switchTab('libri-smartink')" id="nav-libri-smartink" class="px-3 py-2 rounded-lg hover:bg-slate-800 transition">4. Libri Digitali & Ink</button>
+                    <button onclick="switchTab('generatore-inclusione')" id="nav-generatore-inclusione" class="px-3 py-2 rounded-lg hover:bg-slate-800 transition">5. Attività, BES & SOS</button>
+                    <button onclick="window.print()" title="Stampa l'intera guida in PDF" class="ml-2 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center space-x-1">
+                        <span>🖨️</span>
+                        <span>Stampa PDF</span>
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center space-x-2 xl:hidden">
+                    <button onclick="window.print()" class="p-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-700">🖨️</button>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-800 focus:outline-none border border-slate-700">
+                        <span class="text-xl">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-slate-800 px-4 pt-2 pb-4 space-y-1 text-sm border-t border-slate-700">
+            <button onclick="switchTab('didattica-gesti'); toggleMobileMenu();" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-700 font-medium">1. Primi 60 Secondi, Cavi & Gesti</button>
+            <button onclick="switchTab('iq-lumio'); toggleMobileMenu();" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-700 font-medium">2. Lavagna iQ, Split Screen & Lumio</button>
+            <button onclick="switchTab('condivisione-aula'); toggleMobileMenu();" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-700 font-medium">3. Condivisione 4 Schermi & Touchback</button>
+            <button onclick="switchTab('libri-smartink'); toggleMobileMenu();" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-700 font-medium">4. Libri Digitali (HUB/bSmart) & SMART Ink</button>
+            <button onclick="switchTab('generatore-inclusione'); toggleMobileMenu();" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-700 font-medium">5. Generatore Attività, BES/DSA & SOS</button>
+        </div>
+    </header>
+
+    <!-- BARRA DI ACCESSO RAPIDO MOBILE/TABLET -->
+    <div class="xl:hidden bg-slate-900/95 border-t border-slate-800 px-3 py-2 overflow-x-auto flex space-x-2 text-xs no-print">
+        <button onclick="switchTab('didattica-gesti')" id="pill-didattica-gesti" class="whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-sky-600 text-white">1. Primi 60s & Gesti</button>
+        <button onclick="switchTab('iq-lumio')" id="pill-iq-lumio" class="whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300">2. Lavagna iQ & Lumio</button>
+        <button onclick="switchTab('condivisione-aula')" id="pill-condivisione-aula" class="whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300">3. Wireless & BYOD</button>
+        <button onclick="switchTab('libri-smartink')" id="pill-libri-smartink" class="whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300">4. Libri Digitali & Ink</button>
+        <button onclick="switchTab('generatore-inclusione')" id="pill-generatore-inclusione" class="whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300">5. Attività, BES & SOS</button>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ================= SECTION 1: PRIMI 60 SECONDI, GESTI & HARDWARE ================= -->
+        <section id="section-didattica-gesti" class="space-y-8">
+            <!-- Hero Intro Card -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="badge-edu">Modulo 1 • Avvio Rapido e Interazione Naturale</span>
+                    <span class="text-xs text-slate-400">HyPr Touch™ con Object Awareness™ & Pen ID™</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Primi 60 Secondi in Aula: Come Usare la SMART Board MX</h1>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    La SMART Board Serie MX non è un semplice "proiettore collegato al PC", ma un ecosistema autonomo dotato del sistema operativo integrato <strong>iQ</strong>. Prima di iniziare la lezione, scegli una delle <strong>3 modalità operative</strong> qui sotto per sapere esattamente cosa toccare.
+                </p>
+
+                <!-- Selettore Interattivo: Le 3 Modalità di Avvio Lezione -->
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="setStartMode('iq')" id="start-mode-iq" class="text-left p-4 rounded-xl border-2 border-sky-500 bg-sky-50/70 transition hover:shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl">🚀</span>
+                            <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-sky-200 text-sky-900">Zero Cavi • Immediata</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">1. Modalità Autonoma (Senza PC)</h3>
+                        <p class="text-xs text-slate-600 mt-1">Usa la Lavagna iQ, il browser web, Google Drive e gli strumenti di geometria senza accendere il PC.</p>
+                    </button>
+
+                    <button onclick="setStartMode('pc')" id="start-mode-pc" class="text-left p-4 rounded-xl border-2 border-slate-200 bg-white transition hover:border-sky-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl">💻</span>
+                            <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">USB-C o HDMI+USB</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">2. Connessa a PC (Cattedra o Notebook)</h3>
+                        <p class="text-xs text-slate-600 mt-1">Per usare le app dei libri di testo digitali, PowerPoint, Word e annotare sopra con SMART Ink.</p>
+                    </button>
+
+                    <button onclick="setStartMode('wireless')" id="start-mode-wireless" class="text-left p-4 rounded-xl border-2 border-slate-200 bg-white transition hover:border-sky-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl">📡</span>
+                            <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">Fino a 4 Schermi</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">3. Condivisione Wireless (BYOD)</h3>
+                        <p class="text-xs text-slate-600 mt-1">Trasmetti lo schermo di tablet, iPad, Chromebook o PC muovendoti liberamente tra i banchi.</p>
+                    </button>
+                </div>
+
+                <!-- Box dinamico di istruzioni per i Primi 60 Secondi -->
+                <div id="start-mode-details" class="mt-4 p-5 bg-slate-900 text-white rounded-xl border border-slate-800">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span id="start-mode-badge" class="text-[11px] font-bold uppercase tracking-wider text-sky-400 block mb-1">Cosa fare appena entri in classe (Modalità Senza PC):</span>
+                            <h4 id="start-mode-title" class="text-base font-bold text-white mb-2">Premi il tasto centrale "Home" sotto lo schermo e impugna la penna</h4>
+                            <p id="start-mode-steps" class="text-xs text-slate-300 leading-relaxed">
+                                1. Se lo schermo è in standby (spia accesa), <strong>tocca lo schermo</strong> o premi una volta il pulsante di accensione.<br>
+                                2. Tocca <strong>Lavagna (Whiteboard)</strong> per scrivere subito, oppure apri il <strong>Browser</strong> o accedi al tuo profilo Cloud tramite QR Code.<br>
+                                3. A fine lezione premi <strong>Condividi → Esporta PDF</strong> per salvare gli appunti su Google Drive o mostrarli via QR Code alla classe.
+                            </p>
+                        </div>
+                        <div id="start-mode-tip" class="bg-slate-800 p-3.5 rounded-lg border border-slate-700 text-xs text-amber-300 md:max-w-xs flex-shrink-0">
+                            ⚡ <strong>Vantaggio:</strong> Nessun tempo di attesa per l'avvio di Windows. Sei operativo in 3 secondi netti!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Object Awareness Educational Simulator & Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h2 class="text-xl font-bold text-slate-900">La Regola d'Oro: Object Awareness™</h2>
+                            <span class="bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded-full">Zero Menu da Cliccare</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Sulla Serie MX <strong>non serve selezionare l'icona della penna o della gomma</strong> prima di agire. I sensori riconoscono automaticamente cosa tocca il vetro <em>Silktouch™</em>. Clicca sui 4 gesti per vedere la prassi d'aula:
+                        </p>
+                        
+                        <!-- Tool Selector Buttons -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
+                            <button onclick="setEduTool('pen')" id="tool-pen" class="p-3 border-2 border-sky-500 bg-sky-50 rounded-xl flex flex-col items-center justify-center text-center hover:bg-sky-100 transition">
+                                <span class="text-2xl mb-1">🖊️</span>
+                                <span class="text-xs font-bold text-sky-900">1. Penna</span>
+                                <span class="text-[10px] text-slate-500">Scrive subito</span>
+                            </button>
+                            <button onclick="setEduTool('penid')" id="tool-penid" class="p-3 border-2 border-slate-200 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-100 transition">
+                                <span class="text-2xl mb-1">🖍️</span>
+                                <span class="text-xs font-bold text-slate-800">2. Pen ID™</span>
+                                <span class="text-[10px] text-slate-500">2 Colori simultanei</span>
+                            </button>
+                            <button onclick="setEduTool('finger')" id="tool-finger" class="p-3 border-2 border-slate-200 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-100 transition">
+                                <span class="text-2xl mb-1">☝️</span>
+                                <span class="text-xs font-bold text-slate-800">3. Dito</span>
+                                <span class="text-[10px] text-slate-500">Sposta e Ingrandisce</span>
+                            </button>
+                            <button onclick="setEduTool('palm')" id="tool-palm" class="p-3 border-2 border-slate-200 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-100 transition">
+                                <span class="text-2xl mb-1">✋</span>
+                                <span class="text-xs font-bold text-slate-800">4. Palmo</span>
+                                <span class="text-[10px] text-slate-500">Cancella a mano</span>
+                            </button>
+                        </div>
+
+                        <!-- Educational Action Response Box -->
+                        <div id="edu-action-box" class="p-5 bg-slate-900 text-white rounded-xl min-h-[155px] flex flex-col justify-center">
+                            <span id="edu-action-title" class="text-sky-400 font-bold text-base mb-1.5">1. Penna Passiva → Scrittura, Schemi e Sottolineature</span>
+                            <p id="edu-action-desc" class="text-xs text-slate-300 leading-relaxed">
+                                Appena sollevi lo stilo dall'alloggiamento magnetico, puoi scrivere su qualsiasi schermata. Non ha batterie da ricaricare. Appoggiandolo nuovamente nella canalina ed usando il dito, torni automaticamente in modalità "mouse/selezione".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+                        <span>💡 <strong>Trucco d'aula:</strong> Un alunno scrive con la penna, un altro sposta gli oggetti col dito e un terzo cancella col palmo nello stesso istante!</span>
+                    </div>
+                </div>
+
+                <!-- Touch Points & Educational Engagement Chart -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+                    <div class="flex items-center justify-between mb-1">
+                        <h2 class="text-xl font-bold text-slate-900">Impatto sul Coinvolgimento in Classe</h2>
+                        <span class="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">Didattica Attiva</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Confronto della partecipazione attiva degli studenti in base alla metodologia applicata sulla SMART Board MX.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="engagementChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra Frontale dei Comandi Fisici -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Barra Frontale dei Tasti Fisici (Sotto lo Schermo)</h2>
+                        <p class="text-xs text-slate-600">Controlli immediati sempre raggiungibili dal docente anche mentre il PC proietta a tutto schermo:</p>
+                    </div>
+                    <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold border border-amber-300">⚠️ Non togliere mai la corrente generale a fine ora!</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-2xl">🏠</span>
+                            <h3 class="font-bold text-sm text-slate-900">Tasto Home (iQ)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Riporta in qualsiasi momento alla schermata principale <strong>iQ</strong> senza scollegare o chiudere ciò che è aperto sul computer della cattedra.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-2xl">❄️</span>
+                            <h3 class="font-bold text-sm text-slate-900">Freeze / Blocco Immagine</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Fondamentale per la privacy:</strong> "congela" sulla lavagna la consegna dell'esercizio mentre tu usi il PC in cattedra per compilare il Registro Elettronico o cercare una verifica.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-2xl">🙈</span>
+                            <h3 class="font-bold text-sm text-slate-900">Tendina (Screen Shade)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Copre lo schermo con un telo digitale scorrevole per svelare un quesito o un paragrafo alla volta, riducendo il sovraccarico visivo per gli alunni con BES/DSA.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-2xl">🔌</span>
+                            <h3 class="font-bold text-sm text-slate-900">Selezione Input & Standby</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Passa rapidamente da <strong>HDMI 1/2</strong> a <strong>USB-C</strong>. A fine giornata usa un tocco breve sul tasto Power per lo <em>Standby</em> (consente gli aggiornamenti automatici notturni).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: LAVAGNA IQ, SPLIT SCREEN & LUMIO ================= -->
+        <section id="section-iq-lumio" class="hidden space-y-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="badge-edu">Modulo 2 • Ambiente Integrato Senza PC</span>
+                    <span class="text-xs text-slate-400">Sistema Operativo iQ (Google EDLA) & Lumio Cloud</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Lavagna iQ, Sfondi Inclusivi, Split Screen e Lumio</h1>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Premendo il tasto <strong>Home</strong> accedi a un ambiente didattico completo: lavagna multipagina, strumenti per la geometria, browser web privo di distrazioni e attività interattive condivise con i dispositivi degli studenti.
+                </p>
+            </div>
+
+            <!-- Simulatore Interattivo degli Sfondi della Lavagna iQ -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Anteprima Interattiva degli Sfondi Didattici e Inclusivi</h2>
+                        <p class="text-xs text-slate-600">Clicca su uno sfondo per simulare come appare sulla SMART Board MX e scoprire quando utilizzarlo:</p>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Ottimizzato per BES / DSA</span>
+                </div>
+
+                <!-- Bottoni selezione sfondo -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-5">
+                    <button onclick="previewCanvasBg('cream')" id="bg-btn-cream" class="p-2.5 rounded-xl border-2 border-sky-500 bg-sky-50 text-xs font-bold text-slate-800 transition">
+                        🌅 Crema Anti-Dislessia
+                    </button>
+                    <button onclick="previewCanvasBg('math')" id="bg-btn-math" class="p-2.5 rounded-xl border-2 border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-sky-300 transition">
+                        📐 Quadretti & Cartesiano
+                    </button>
+                    <button onclick="previewCanvasBg('primary')" id="bg-btn-primary" class="p-2.5 rounded-xl border-2 border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-sky-300 transition">
+                        📝 Righe Evidenziate
+                    </button>
+                    <button onclick="previewCanvasBg('music')" id="bg-btn-music" class="p-2.5 rounded-xl border-2 border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-sky-300 transition">
+                        🎼 Pentagramma
+                    </button>
+                    <button onclick="previewCanvasBg('dark')" id="bg-btn-dark" class="p-2.5 rounded-xl border-2 border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-sky-300 transition">
+                        🌙 Lavagna Alto Contrasto
+                    </button>
+                </div>
+
+                <!-- Schermo Simulato della Lavagna -->
+                <div id="simulated-board" class="bg-dyslexia-cream rounded-2xl border-4 border-slate-800 p-6 min-h-[200px] shadow-inner flex flex-col justify-between transition-all duration-300">
+                    <div class="flex justify-between items-start">
+                        <span id="sim-board-tag" class="bg-amber-900/90 text-amber-100 text-[11px] px-2.5 py-1 rounded-md font-bold">
+                            Sfondo Consigliato come Predefinito (Accessibilità Visiva)
+                        </span>
+                        <div class="flex space-x-2 bg-slate-900/90 text-white px-3 py-1.5 rounded-lg text-xs">
+                            <span>📏 Righello</span>
+                            <span>•</span>
+                            <span>📐 Goniometro</span>
+                            <span>•</span>
+                            <span>🧭 Compasso</span>
+                            <span>•</span>
+                            <span>🔤 OCR Testo</span>
+                        </div>
+                    </div>
+
+                    <div class="my-4">
+                        <p id="sim-board-sample" class="text-lg sm:text-xl font-bold text-slate-800 tracking-wide">
+                            Teorema di Pitagora: a² + b² = c²  →  Convertito in font ad alta leggibilità
+                        </p>
+                        <p id="sim-board-advice" class="text-xs text-slate-700 mt-2 max-w-3xl leading-relaxed font-medium">
+                            <strong>Perché usarlo:</strong> Il bianco puro ad alta luminosità affatica la vista e riduce la leggibilità per gli alunni dislessici. Lo sfondo crema/avorio con righe tenui elimina il riverbero luminoso e offre riferimenti spaziali costanti.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center justify-between text-[11px] text-slate-600 pt-2 border-t border-slate-400/30">
+                        <span id="sim-board-footer">Tocca l'icona "Sfondo" in basso a sinistra nella Lavagna iQ per cambiarlo in 1 secondo.</span>
+                        <span class="font-bold">Esporta in PDF + QR Code a fine ora</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schermo Diviso (Split Screen) e Login Cloud -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Modalità Schermo Diviso (Split Screen)</h3>
+                        <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2.5 py-1 rounded">Browser + Lavagna</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Non serve passare continuamente dal browser alla lavagna: affianca due app sullo schermo per costruire mappe o appunti mentre consulti una fonte.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900 rounded-xl text-white text-xs">
+                        <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                            <span class="text-sky-400 font-bold block mb-1">🌐 Lato Sinistro: Browser</span>
+                            <p class="text-[11px] text-slate-300">Articolo di giornale, simulazione PhET, Wikipedia o video YouTube senza pubblicità.</p>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                            <span class="text-emerald-400 font-bold block mb-1">✍️ Lato Destro: Lavagna iQ</span>
+                            <p class="text-[11px] text-slate-300">Gli studenti costruiscono in tempo reale la mappa concettuale o risolvono l'esercizio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Profilo Docente, Cloud & Logout Sicuro</h3>
+                        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded">Google & Microsoft</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Accedendo con il tuo account scolastico (tramite <strong>QR Code dallo smartphone</strong> o badge NFC), ritrovi immediatamente le tue cartelle <strong>Google Drive</strong> o <strong>OneDrive</strong>.
+                    </p>
+                    <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-slate-700 space-y-1.5">
+                        <div class="font-bold text-amber-900">🔐 Regola di Sicurezza al Cambio d'Ora:</div>
+                        <p class="text-[11px] leading-relaxed">
+                            Tocca sempre l'icona del tuo profilo in alto a sinistra e premi <strong>"Esci" (Logout)</strong>: la SMART Board chiude in automatico Drive, email e sessioni personali lasciando il pannello pulito per il collega successivo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Collaboration Simulator via hellosmart.com / Lumio -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2">Simulatore di Sessione Collaborativa (Lumio / hellosmart.com)</h2>
+                <p class="text-xs text-slate-600 mb-5">
+                    Gli studenti (in classe o a casa in DDI) inquadrano il QR Code della lavagna o visitano <code>hellosmart.com</code>. Clicca sulle <strong>3 modalità di conduzione</strong> per vedere come si trasforma la lezione:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div onclick="setEduCollabMode('teacher')" id="mode-edu-teacher" class="p-4 border-2 border-sky-500 bg-sky-50/60 rounded-xl cursor-pointer hover:border-sky-600 transition">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="font-bold text-sm text-sky-900">1. Guida Docente</span>
+                            <span class="text-[10px] bg-sky-200 text-sky-900 px-2 py-0.5 rounded font-bold">Sincrona</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Quando cambi pagina sulla SMART Board, la pagina cambia automaticamente su tutti i tablet/smartphone della classe.
+                        </p>
+                    </div>
+
+                    <div onclick="setEduCollabMode('student')" id="mode-edu-student" class="p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 transition">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="font-bold text-sm text-slate-900">2. Scheda Individuale (Handout)</span>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Ritmo Personale</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Ogni studente riceve una copia digitale individuale dell'esercizio; il docente può "entrare" in ogni scheda in tempo reale per dare feedback.
+                        </p>
+                    </div>
+
+                    <div onclick="setEduCollabMode('workspace')" id="mode-edu-workspace" class="p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-amber-500 transition">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="font-bold text-sm text-slate-900">3. Spazio di Gruppo (Workspace)</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">Cooperative</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Il sistema divide la classe in squadre da 3-4 alunni che scrivono contemporaneamente sullo stesso foglio condiviso dai banchi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dynamic Classroom Activity Box -->
+                <div class="p-5 bg-slate-900 text-white rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-start space-x-3.5">
+                        <span class="text-3xl">📢</span>
+                        <div>
+                            <span id="activity-badge" class="text-[11px] font-bold uppercase tracking-wider text-sky-400 block">Modalità Attiva: Guida Docente & Brainstorming</span>
+                            <span id="activity-title" class="text-base font-bold">Grida Forte! (Shout It Out!) + Sondaggi Istantanei</span>
+                            <p id="activity-desc" class="text-xs text-slate-300 mt-1 leading-relaxed">Gli studenti inviano dal banco fino a 3 parole chiave, dubbi sulla Flipped Classroom o immagini. I contributi appaiono come post-it colorati sulla SMART Board pronti per essere raggruppati col dito dal docente.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 px-4 py-2.5 rounded-lg border border-slate-700 text-center flex-shrink-0 w-full md:w-auto">
+                        <span class="text-[10px] text-slate-400 block uppercase">hellosmart.com • Codice Classe</span>
+                        <span class="text-lg font-mono font-bold text-amber-400">849 - 210</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Widgets Toolbox -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Widget Didattici ed Elementi Gamificati Pronti all'Uso</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-2xl block mb-1.5">⏱️ Timer Visivo</span>
+                        <h4 class="font-bold text-xs text-slate-900">Gestione Tempi e Ansia</h4>
+                        <p class="text-[11px] text-slate-600 mt-1">Inserisci un cronometro visivo direttamente sulla pagina dell'esercizio per scandire il lavoro di gruppo o le verifiche.</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-2xl block mb-1.5">🎲 Estrazione & Dadi</span>
+                        <h4 class="font-bold text-xs text-slate-900">Selettore Casuale Nomi</h4>
+                        <p class="text-[11px] text-slate-600 mt-1">Sorteggia in modo trasparente i portavoce dei gruppi o personalizza le facce del dado con verbi, numeri o domande.</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-2xl block mb-1.5">📹 Registra Schermo + Voce</span>
+                        <h4 class="font-bold text-xs text-slate-900">Video-Lezioni in 1 Tocco</h4>
+                        <p class="text-[11px] text-slate-600 mt-1">Registra ciò che scrivi sulla lavagna insieme alla tua voce (microfoni integrati) per creare pillole di 5 minuti da caricare su Classroom.</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-2xl block mb-1.5">👾 Monster Quiz & Flip Out</span>
+                        <h4 class="font-bold text-xs text-slate-900">Template Gamificati</h4>
+                        <p class="text-[11px] text-slate-600 mt-1">Crea in 2 minuti sfide a squadre (Monster Quiz), carte da girare (Flip Out) o abbinamenti logici (Match 'Em Up).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 3: CONDIVISIONE WIRELESS & TOUCHBACK ================= -->
+        <section id="section-condivisione-aula" class="hidden space-y-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="badge-edu">Modulo 3 • Proiezione Wireless & BYOD</span>
+                    <span class="text-xs text-slate-400">AirPlay, Google Cast, Miracast & Touchback</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Condivisione Schermo fino a 4 Studenti e Touchback</h1>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Con l'app <strong>Condivisione Schermo (SMART Screen Share)</strong> puoi proiettare i dispositivi di docenti e studenti senza cavi. Durante il Cooperative Learning puoi affiancare fino a <strong>4 schermi contemporaneamente</strong> per confrontare i lavori dei gruppi.
+                </p>
+            </div>
+
+            <!-- Simulatore Griglia 4 Schermi -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Laboratorio di Confronto: Griglia Multi-Schermo 2x2</h2>
+                        <p class="text-xs text-slate-600">Simula la vista sulla SMART Board MX quando i 4 gruppi trasmettono i propri risultati dal banco:</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="toggleScreenGrid(4)" id="grid-btn-4" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white">Vista 4 Gruppi (2x2)</button>
+                        <button onclick="toggleScreenGrid(1)" id="grid-btn-1" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Ingrandisci Gruppo 1</button>
+                    </div>
+                </div>
+
+                <div id="wireless-grid-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-slate-900 rounded-2xl">
+                    <div class="bg-slate-800 p-4 rounded-xl border border-sky-500/60 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-sky-400 font-bold">📱 Gruppo 1 (iPad - AirPlay)</span>
+                            <span class="text-[10px] bg-sky-900 text-sky-200 px-2 py-0.5 rounded">In diretta</span>
+                        </div>
+                        <p class="text-xs text-slate-200 font-medium">Mappa concettuale sulle energie rinnovabili con annotazioni dal vivo del docente.</p>
+                    </div>
+                    <div class="wireless-extra-screen bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-amber-400 font-bold">💻 Gruppo 2 (Windows - Miracast)</span>
+                            <span class="text-[10px] bg-emerald-900 text-emerald-200 px-2 py-0.5 rounded">Touchback Attivo</span>
+                        </div>
+                        <p class="text-xs text-slate-200 font-medium">Foglio di calcolo con grafici statistici dei dati raccolti in laboratorio.</p>
+                    </div>
+                    <div class="wireless-extra-screen bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-emerald-400 font-bold">💻 Gruppo 3 (Chromebook - Google Cast)</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">In diretta</span>
+                        </div>
+                        <p class="text-xs text-slate-200 font-medium">Presentazione Google Slides con analisi delle fonti storiche.</p>
+                    </div>
+                    <div class="wireless-extra-screen bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-purple-400 font-bold">📱 Gruppo 4 (Tablet Android - App SMART)</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Connesso con Codice</span>
+                        </div>
+                        <p class="text-xs text-slate-200 font-medium">Foto del quaderno o dell'esperimento scientifico appena realizzato al banco.</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">
+                    🛡️ <strong>Moderazione Docente ("Autorizza Connessione"):</strong> Attivando il permesso nell'app Condivisione Schermo, nessuno studente può proiettare sulla lavagna senza che il docente tocchi <em>"Consenti"</em> sul display.
+                </p>
+            </div>
+
+            <!-- Guida passo-passo per ogni sistema operativo -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-slate-900">Windows 10/11 (Miracast)</h3>
+                            <span class="text-[10px] bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded">Tasti: Win + K</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                            1. Premi sulla tastiera del PC <strong>Tasto Windows + K</strong>.<br>
+                            2. Seleziona il nome della SMART Board.<br>
+                            3. Spunta la casella <strong>"Consenti input da mouse, tastiera, tocco e penna"</strong> per attivare il <strong>Touchback</strong> (controlli il PC senza fili toccando la lavagna!).
+                        </p>
+                    </div>
+                    <div class="text-[11px] text-emerald-700 font-semibold border-t pt-2">✓ Funziona anche se il Wi-Fi è lento (connessione diretta).</div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-slate-900">iPad, iPhone e Mac (AirPlay)</h3>
+                            <span class="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded">Centro di Controllo</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                            1. Scorri dall'angolo in alto a destra su iPad/iPhone per aprire il <strong>Centro di Controllo</strong>.<br>
+                            2. Tocca <strong>Duplica Schermo</strong> (icona con due rettangoli).<br>
+                            3. Scegli la SMART Board dell'aula.
+                        </p>
+                    </div>
+                    <div class="text-[11px] text-slate-500 border-t pt-2">💡 Ideale per usare l'iPad come lavagnetta grafica camminando tra i banchi.</div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-slate-900">Chromebook & Reti Separate</h3>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">Google Cast / Codice</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                            Dal menu di Chrome clicca su <strong>Salva e condividi → Trasmetti...</strong>.<br>
+                            <strong>Se sei su un'altra rete Wi-Fi (es. Wi-Fi Ospiti):</strong> usa il codice numerico mostrato nell'app Condivisione Schermo di iQ.
+                        </p>
+                    </div>
+                    <div class="text-[11px] text-slate-500 border-t pt-2">🔑 Rolve il blocco tra rete LAN Lim e Wi-Fi Studenti.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: LIBRI DIGITALI & SMART INK ================= -->
+        <section id="section-libri-smartink" class="hidden space-y-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="badge-edu">Modulo 4 • Libri di Testo Digitali & PC</span>
+                    <span class="text-xs text-slate-400">HUB Scuola, bSmart, myZanichelli, Sanoma, PDF & Office</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Usare i Libri di Testo Digitali e Padroneggiare SMART Ink</h1>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Il dubbio più frequente dei docenti quando collegano il PC è: <em>"Perché se sottolineo il libro digitale e poi scorro la pagina, le mie scritte restano ferme a mezz'aria?"</em>. Ecco come usare <strong>SMART Ink</strong> in modo impeccabile.
+                </p>
+
+                <!-- Risolutore Interattivo per Libri Digitali -->
+                <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                    <h2 class="text-base font-bold text-slate-900 mb-3">Scegli cosa stai proiettando dal PC per vedere la procedura corretta:</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                        <button onclick="setInkScenario('webapp')" id="ink-btn-webapp" class="p-3 rounded-xl border-2 border-sky-500 bg-white text-left transition">
+                            <span class="text-xs font-bold text-sky-900 block">📚 1. Piattaforme Libri Digitali</span>
+                            <span class="text-[11px] text-slate-500">HUB Scuola, bSmart, myZanichelli, Sanoma</span>
+                        </button>
+                        <button onclick="setInkScenario('pdf')" id="ink-btn-pdf" class="p-3 rounded-xl border-2 border-slate-200 bg-white text-left hover:border-sky-300 transition">
+                            <span class="text-xs font-bold text-slate-800 block">📄 2. Dispense PDF & Word/PPT</span>
+                            <span class="text-[11px] text-slate-500">Inchiostro ancorato che scorre col testo</span>
+                        </button>
+                        <button onclick="setInkScenario('magic')" id="ink-btn-magic" class="p-3 rounded-xl border-2 border-slate-200 bg-white text-left hover:border-sky-300 transition">
+                            <span class="text-xs font-bold text-slate-800 block">✨ 3. Inchiostro a Scomparsa & Cattura</span>
+                            <span class="text-[11px] text-slate-500">Annotazioni rapide su video e mappe</span>
+                        </button>
+                    </div>
+
+                    <div id="ink-scenario-box" class="p-5 bg-slate-900 text-white rounded-xl">
+                        <h3 id="ink-scenario-title" class="text-sky-400 font-bold text-sm sm:text-base mb-2">Come non perdere gli appunti su HUB Scuola, bSmart e Zanichelli</h3>
+                        <p id="ink-scenario-text" class="text-xs text-slate-300 leading-relaxed">
+                            • <strong>Se vuoi che la sottolineatura resti salvata nella pagina del libro anche quando scorri:</strong> tocca l'icona <em>Matita / Evidenziatore interna alla barra dell'app del libro digitale</em> (HUB Young / bSmart) e traccia con la penna della SMART Board.<br>
+                            • <strong>Se scrivi direttamente sopra lo schermo con SMART Ink:</strong> stai scrivendo su un "foglio trasparente" sovrapposto. Prima di girare pagina o scorrere, tocca il pallino fluttuante di SMART Ink e premi <strong>📸 Cattura schermata</strong> per inviare automaticamente la pagina annotata dentro la Lavagna e salvarla in PDF!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMART Ink Application Integration Matrix -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-2xl mb-2">📄</div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">SMART Ink Document Viewer (PDF)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Aprendo le tue dispense o verifiche PDF con il visualizzatore SMART Ink (o Adobe Reader), <strong>le note si incollano alla pagina</strong>: puoi scorrere su e giù con due dita senza mai disallineare gli appunti.
+                    </p>
+                    <span class="text-[11px] text-sky-700 font-semibold block">💡 Salva il PDF annotato per caricarlo su Classroom.</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-2xl mb-2">📊</div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">Microsoft PowerPoint, Word & Excel</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Durante una presentazione PowerPoint puoi scrivere con le penne sulle diapositive e cambiare slide toccando lo schermo. A fine presentazione i tuoi schemi restano salvati dentro ogni singola slide.
+                    </p>
+                    <span class="text-[11px] text-sky-700 font-semibold block">💡 Nessun bisogno di tornare al PC per cambiare diapositiva.</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-2xl mb-2">🪄</div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-1">Inchiostro a Scomparsa & Riflettore</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Dal pallino laterale di SMART Ink scegli la <strong>Penna a scomparsa</strong>: cerchia un luogo geografico o un'espressione su un video in pausa; dopo 4 secondi il segno svanisce da solo senza dover cancellare!
+                    </p>
+                    <span class="text-[11px] text-sky-700 font-semibold block">💡 Pulizia visiva costante durante la spiegazione.</span>
+                </div>
+            </div>
+
+            <!-- Mathematical OCR Feature Highlight -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <span class="bg-amber-500 text-slate-900 font-bold text-[10px] px-2.5 py-1 rounded uppercase tracking-wider">Accessibilità & STEM</span>
+                    <h3 class="text-lg font-bold text-sky-300">Conversione da Scrittura Manuale a Testo Tipografico e Formule (OCR)</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
+                        Scrivi un titolo in corsivo o un'equazione a mano libera con la penna, selezionala con il dito e tocca <strong>"Converti in testo"</strong> (o <em>Ink-to-Math</em>). La scrittura diventa immediatamente un carattere stampato ad alta leggibilità, indispensabile per gli studenti con dislessia.
+                    </p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center flex-shrink-0 w-full md:w-auto">
+                    <span class="text-xs text-slate-400 line-through block mb-1">Scrittura manuale in corsivo</span>
+                    <span class="text-xl font-bold text-white block mb-1">∫ (x² + 2x) dx  |  TESTO CHIARO</span>
+                    <span class="text-[11px] text-emerald-400 font-mono font-bold">✓ Leggibilità 100% dal fondo dell'aula</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 5: GENERATORE ATTIVITÀ, INCLUSIONE BES/DSA & SOS ================= -->
+        <section id="section-generatore-inclusione" class="hidden space-y-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="badge-edu">Modulo 5 • Progettazione Didattica, Inclusione & SOS</span>
+                    <span class="text-xs text-slate-400">Generatore Disciplinare, Protocollo BES/DSA e Diagnostica in 30 Secondi</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Generatore di Attività, Protocollo BES/DSA e SOS Aula</h1>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Genera schede operative pronte per la tua materia (copiabili con un clic nel tuo piano di lezione), applica il protocollo inclusivo in 3 fasi e risolvi in 30 secondi qualsiasi imprevisto tecnico.
+                </p>
+            </div>
+
+            <!-- Interactive Activity Generator Tool -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Generatore Interattivo di Attività per Disciplina</h2>
+                        <p class="text-xs text-slate-600">Seleziona l'ambito disciplinare e la metodologia per generare la traccia operativa completa:</p>
+                    </div>
+                    <button onclick="copyGeneratedActivity()" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold transition flex items-center space-x-1.5 self-start sm:self-auto shadow-sm">
+                        <span>📋</span>
+                        <span>Copia Scheda Attività</span>
+                    </button>
+                </div>
+
+                <!-- Filter Selectors -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">1. Ambito Disciplinare:</label>
+                        <select id="gen-subject" onchange="generateActivity()" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                            <option value="stem">Matematica, Fisica e STEM</option>
+                            <option value="humanities">Italiano, Storia, Filosofia e Diritto</option>
+                            <option value="languages">Lingue Straniere (Inglese / L2)</option>
+                            <option value="arts">Arte, Geografia, Musica e Scienze</option>
+                            <option value="support">Sostegno, Potenziamento e Inclusione</option>
+                            <option value="primary">Scuola Primaria / Infanzia</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">2. Metodologia / Obiettivo Didattico:</label>
+                        <select id="gen-goal" onchange="generateActivity()" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                            <option value="brainstorming">Brainstorming & Attivazione Preconoscenze</option>
+                            <option value="cooperative">Cooperative Learning & Lavoro a Stazioni</option>
+                            <option value="assessment">Valutazione Formativa & Gamification</option>
+                            <option value="flipped">Flipped Classroom & Sintesi Inclusiva</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generated Activity Output Box -->
+                <div id="activity-output-box" class="p-5 sm:p-6 bg-gradient-to-br from-sky-50 to-slate-50 border border-sky-200 rounded-2xl space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-sky-200/70 pb-3">
+                        <h3 id="activity-out-title" class="font-extrabold text-sky-950 text-base sm:text-lg">Sequenza Consigliata: Laboratorio Scientifico Guidato</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span id="activity-out-time" class="text-[11px] bg-white border border-sky-200 text-sky-800 px-2.5 py-1 rounded-full font-bold">⏱️ 15-20 min</span>
+                            <span id="activity-out-tools" class="text-[11px] bg-sky-600 text-white px-2.5 py-1 rounded-full font-bold">🛠️ Lavagna iQ + Pen ID</span>
+                        </div>
+                    </div>
+                    <div id="activity-out-steps" class="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5">
+                        <!-- Popolato da JS -->
+                    </div>
+                    <div id="activity-out-bes" class="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-950 font-medium">
+                        <!-- Popolato da JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocollo Operativo Inclusione BES e DSA (Prima - Durante - Dopo) -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Protocollo Inclusivo BES & DSA: "Prima – Durante – Dopo"</h2>
+                        <p class="text-xs text-slate-600">Come trasformare la SMART Board MX in uno strumento compensativo reale per tutta la classe:</p>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold">Riduzione Carico Cognitivo</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="p-5 bg-emerald-50/60 rounded-2xl border border-emerald-200 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-2.5 py-0.5 rounded mb-2">1. Prima di Iniziare</span>
+                            <h3 class="font-bold text-sm text-slate-900 mb-2">Accessibilità Visiva e Spaziale</h3>
+                            <ul class="text-xs text-slate-700 space-y-2 leading-relaxed">
+                                <li>• <strong>Stop allo sfondo bianco abbagliante:</strong> imposta lo sfondo <em>Crema/Avorio</em> o <em>Scuro</em> per ridurre lo stress visivo nei dislessici.</li>
+                                <li>• <strong>Riferimenti spaziali:</strong> non scrivere mai su foglio bianco vuoto; attiva sempre quadretti grandi o righe per supportare disgrafia e discalculia.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-sky-50/60 rounded-2xl border border-sky-200 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-sky-700 text-white px-2.5 py-0.5 rounded mb-2">2. Durante la Spiegazione</span>
+                            <h3 class="font-bold text-sm text-slate-900 mb-2">Attenzione Selettiva e Codice Colore</h3>
+                            <ul class="text-xs text-slate-700 space-y-2 leading-relaxed">
+                                <li>• <strong>Conversione OCR:</strong> trasforma le parole chiave dal tuo corsivo manuale in stampato chiaro con <em>"Converti in testo"</em>.</li>
+                                <li>• <strong>Tendina e Riflettore:</strong> scopri un solo quesito o paragrafo alla volta.</li>
+                                <li>• <strong>Codice colore fisso:</strong> es. <em>Rosso = Concetto chiave, Blu = Regola, Verde = Esempio</em>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-amber-50/60 rounded-2xl border border-amber-200 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-amber-600 text-white px-2.5 py-0.5 rounded mb-2">3. A Fine Lezione (Ultimi 2 min)</span>
+                            <h3 class="font-bold text-sm text-slate-900 mb-2">Dispensa dalla Copiatura Manuale</h3>
+                            <ul class="text-xs text-slate-700 space-y-2 leading-relaxed">
+                                <li>• <strong>Ascolto senza ansia:</strong> dichiara a inizio ora: <em>"Non preoccupatevi di copiare tutto: a fine lezione vi passo il PDF completo"</em>.</li>
+                                <li>• <strong>Esportazione in 1 tocco:</strong> tocca <em>Condividi → Esporta PDF</em> per generare un QR Code o salvare le pagine su Google Classroom.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOS Aula in 30 Secondi: Risoluzione Rapida Problemi -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">SOS Aula in 30 Secondi: Diagnostica Immediata</h2>
+                        <p class="text-xs text-slate-600">Prima di chiamare il tecnico o l'Animatore Digitale, filtra il sintomo riscontrato:</p>
+                    </div>
+                    <input type="text" id="edu-diag-search" onkeyup="filterEduDiagnostics()" placeholder="Cerca es. touch, cavo, audio, penna, HUB..." class="px-4 py-2.5 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-sky-500 w-full md:w-72">
+                </div>
+
+                <!-- Bottoni Filtro Rapido SOS -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button onclick="setDiagCategory('all')" id="diag-cat-all" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white">Tutti i problemi</button>
+                    <button onclick="setDiagCategory('touch')" id="diag-cat-touch" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">🖐️ Touch & Penne</button>
+                    <button onclick="setDiagCategory('video')" id="diag-cat-video" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">🔌 Cavi & Schermo</button>
+                    <button onclick="setDiagCategory('audio')" id="diag-cat-audio" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">🔊 Audio</button>
+                    <button onclick="setDiagCategory('wireless')" id="diag-cat-wireless" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">📡 Wireless & Cloud</button>
+                </div>
+
+                <!-- Troubleshooting Matrix Table -->
+                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                    <table class="min-w-full divide-y divide-slate-200 text-xs">
+                        <thead class="bg-slate-100 text-slate-700">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-bold">Sintomo in Aula</th>
+                                <th class="px-4 py-3 text-left font-bold">Causa Probabile</th>
+                                <th class="px-4 py-3 text-left font-bold">Soluzione in 30 Secondi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="edu-diag-table-body" class="divide-y divide-slate-200 bg-white text-slate-600">
+                            <!-- Dynamic Population -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Box Animatore Digitale & Cura del Pannello -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400 block mb-1">Per l'Animatore Digitale & Team Innovazione</span>
+                    <h3 class="text-base font-bold mb-2">Micro-Formazione Interna: "1 Strumento a Settimana"</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        • <strong>Settimana 1:</strong> Scrittura con Pen ID, cancellazione col palmo ed esportazione PDF a fine ora.<br>
+                        • <strong>Settimana 2:</strong> Uso dello <em>Split Screen</em> (Browser + Lavagna) e dello sfondo crema inclusivo.<br>
+                        • <strong>Settimana 3:</strong> Brainstorming rapido con <em>Grida Forte!</em> dai dispositivi degli alunni.
+                    </p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col justify-center">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase mb-1">🧼 Cura del Vetro Antiriflesso Silktouch™</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Non spruzzare mai alcol puro, ammoniaca o sgrassatori aggressivi sullo schermo: rovinano il trattamento oleofobico a basso attrito. Pulire a schermo spento solo con un <strong>panno in microfibra morbido</strong> leggermente inumidito con acqua.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs space-y-3 md:space-y-0">
+            <div>
+                Guida Metodologico-Didattica Interattiva <strong>SMART Board® Serie MX</strong> • Progettata per i Docenti
+            </div>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span>Risoluzione 4K UHD</span>
+                <span>•</span>
+                <span>HyPr Touch™ con Object Awareness™</span>
+                <span>•</span>
+                <span>Ecosistema iQ & Lumio</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Notifica Toast (Senza mai usare alert)
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3200);
+        }
+
+        // Navigazione tra i 5 Moduli
+        function switchTab(tabId) {
+            const sections = ['didattica-gesti', 'iq-lumio', 'condivisione-aula', 'libri-smartink', 'generatore-inclusione'];
+            sections.forEach(sec => {
+                const secEl = document.getElementById(`section-${sec}`);
+                const navEl = document.getElementById(`nav-${sec}`);
+                const pillEl = document.getElementById(`pill-${sec}`);
+
+                if (sec === tabId) {
+                    secEl.classList.remove('hidden');
+                    if (navEl) navEl.classList.add('bg-slate-800', 'text-sky-400', 'font-bold');
+                    if (pillEl) {
+                        pillEl.className = 'whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-sky-600 text-white';
+                    }
+                } else {
+                    secEl.classList.add('hidden');
+                    if (navEl) navEl.classList.remove('bg-slate-800', 'text-sky-400', 'font-bold');
+                    if (pillEl) {
+                        pillEl.className = 'whitespace-nowrap px-3 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300';
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modulo 1: Selettore Primi 60 Secondi (3 Modalità)
+        function setStartMode(mode) {
+            const modes = ['iq', 'pc', 'wireless'];
+            modes.forEach(m => {
+                const btn = document.getElementById(`start-mode-${m}`);
+                btn.className = (m === mode)
+                    ? 'text-left p-4 rounded-xl border-2 border-sky-500 bg-sky-50/70 transition shadow-sm'
+                    : 'text-left p-4 rounded-xl border-2 border-slate-200 bg-white transition hover:border-sky-300';
+            });
+
+            const badge = document.getElementById('start-mode-badge');
+            const title = document.getElementById('start-mode-title');
+            const steps = document.getElementById('start-mode-steps');
+            const tip = document.getElementById('start-mode-tip');
+
+            if (mode === 'iq') {
+                badge.textContent = 'Cosa fare appena entri in classe (Modalità Autonoma Senza PC):';
+                title.textContent = 'Premi il tasto centrale "Home" sotto lo schermo e impugna la penna';
+                steps.innerHTML = '1. Se lo schermo è scuro, <strong>toccalo</strong> o premi una volta il tasto di accensione.<br>2. Tocca <strong>Lavagna (Whiteboard)</strong> per scrivere subito, oppure apri il <strong>Browser Web</strong> o i tuoi file Cloud.<br>3. A fine ora tocca <strong>Condividi → Esporta PDF</strong> per salvare tutta la lezione su Drive o mostrarla via QR Code.';
+                tip.innerHTML = '⚡ <strong>Vantaggio:</strong> Non devi aspettare l\'accensione del PC di cattedra. Sei operativo in 3 secondi!';
+            } else if (mode === 'pc') {
+                badge.textContent = 'Cosa fare appena entri in classe (Modalità Connessa a PC):';
+                title.textContent = 'Controlla la regola dei cavi: 1 Cavo USB-C oppure HDMI + Cavo USB Touch';
+                steps.innerHTML = '1. <strong>Con un notebook moderno:</strong> collega un solo cavo <strong>USB-C</strong> (trasmette video, audio, tocco e ricarica il PC a 65W).<br>2. <strong>Con il PC fisso o HDMI:</strong> assicurati che oltre al cavo <strong>HDMI</strong> (video) sia collegato anche il cavo <strong>USB-B Touch</strong> nella porta corrispondente (es. HDMI 1 + Touch USB 1), altrimenti vedrai lo schermo ma il tocco non funzionerà!<br>3. Premi il tasto fisico <strong>Input</strong> sotto la lavagna e seleziona la porta usata.';
+                tip.innerHTML = '🔌 <strong>Nota Tecnica:</strong> Il cavo HDMI da solo trasporta solo immagine e suono, mai il segnale Touch!';
+            } else if (mode === 'wireless') {
+                badge.textContent = 'Cosa fare appena entri in classe (Condivisione Schermo Senza Fili):';
+                title.textContent = 'Apri l\'app "Condivisione Schermo" dalla schermata Home di iQ';
+                steps.innerHTML = '1. Premi il tasto <strong>Home</strong> e tocca il riquadro <strong>Condivisione Schermo (Screen Share)</strong>.<br>2. Da <strong>Windows</strong> premi <code>Win + K</code>; da <strong>iPad/Mac</strong> apri il Centro di Controllo → <em>Duplica Schermo</em>; da <strong>Chromebook</strong> clicca su <em>Trasmetti</em>.<br>3. Spunta <em>"Consenti input"</em> su Windows se vuoi comandare il tuo PC direttamente toccando la lavagna (<strong>Touchback</strong>).';
+                tip.innerHTML = '📡 <strong>Cooperative Learning:</strong> Puoi far trasmettere fino a 4 gruppi contemporaneamente in una griglia 2x2!';
+            }
+        }
+
+        // Modulo 1: Simulatore Object Awareness & Pen ID
+        function setEduTool(tool) {
+            const tools = ['pen', 'penid', 'finger', 'palm'];
+            tools.forEach(t => {
+                const btn = document.getElementById(`tool-${t}`);
+                btn.classList.remove('border-sky-500', 'bg-sky-50');
+                btn.classList.add('border-slate-200');
+            });
+            
+            const selectedBtn = document.getElementById(`tool-${tool}`);
+            selectedBtn.classList.add('border-sky-500', 'bg-sky-50');
+            selectedBtn.classList.remove('border-slate-200');
+
+            const titleEl = document.getElementById('edu-action-title');
+            const descEl = document.getElementById('edu-action-desc');
+
+            if (tool === 'pen') {
+                titleEl.textContent = '1. Penna Passiva → Scrittura, Schemi e Sottolineature';
+                titleEl.className = 'text-sky-400 font-bold text-base mb-1.5';
+                descEl.textContent = 'Appena sollevi lo stilo dall\'alloggiamento magnetico, puoi scrivere su qualsiasi schermata. Non ha batterie da ricaricare. Appoggiandolo nuovamente nella canalina ed usando il dito, torni automaticamente in modalità "mouse/selezione".';
+            } else if (tool === 'penid') {
+                titleEl.textContent = '2. Tecnologia Pen ID™ → Due Studenti con Due Colori Diversi';
+                titleEl.className = 'text-purple-400 font-bold text-base mb-1.5';
+                descEl.textContent = 'Le due penne in dotazione sono indipendenti: puoi impostare una penna sul colore Blu e l\'altra sul Rosso (o Evidenziatore Giallo). Due studenti possono lavorare affiancati alla lavagna contemporaneamente senza mai rubarsi il colore!';
+            } else if (tool === 'finger') {
+                titleEl.textContent = '3. Polpastrello → Sposta, Ingrandisci (Pinch-to-Zoom) e Naviga';
+                titleEl.className = 'text-emerald-400 font-bold text-base mb-1.5';
+                descEl.textContent = 'Anche mentre tieni la penna in mano, se tocchi lo schermo con il dito la lavagna capisce che non vuoi scrivere ma spostare una casella di testo, ruotare il goniometro, scorrere una pagina web o ingrandire una carta geografica con due dita.';
+            } else if (tool === 'palm') {
+                titleEl.textContent = '4. Palmo o Pugno → Cancellazione Naturale Istantanea';
+                titleEl.className = 'text-amber-400 font-bold text-base mb-1.5';
+                descEl.textContent = 'Poggia il palmo della mano o il lato del pugno sullo schermo e muovilo come un vero cancellino: compare un cerchio di cancellazione proporzionale alla tua mano che pulisce l\'inchiostro digitale senza toccare nessun menu.';
+            }
+        }
+
+        // Modulo 2: Simulatore Sfondi Didattici e Inclusivi
+        function previewCanvasBg(bgType) {
+            const buttons = ['cream', 'math', 'primary', 'music', 'dark'];
+            buttons.forEach(b => {
+                const btn = document.getElementById(`bg-btn-${b}`);
+                btn.className = (b === bgType)
+                    ? 'p-2.5 rounded-xl border-2 border-sky-500 bg-sky-50 text-xs font-bold text-slate-900 transition shadow-sm'
+                    : 'p-2.5 rounded-xl border-2 border-slate-200 bg-white text-xs font-bold text-slate-700 hover:border-sky-300 transition';
+            });
+
+            const board = document.getElementById('simulated-board');
+            const tag = document.getElementById('sim-board-tag');
+            const sample = document.getElementById('sim-board-sample');
+            const advice = document.getElementById('sim-board-advice');
+            const footer = document.getElementById('sim-board-footer');
+
+            board.className = 'rounded-2xl border-4 border-slate-800 p-6 min-h-[200px] shadow-inner flex flex-col justify-between transition-all duration-300 ';
+
+            if (bgType === 'cream') {
+                board.classList.add('bg-dyslexia-cream');
+                tag.textContent = 'Sfondo Consigliato come Predefinito (Accessibilità Visiva BES/DSA)';
+                sample.className = 'text-lg sm:text-xl font-bold text-slate-800 tracking-wide';
+                sample.textContent = 'Teorema di Pitagora: a² + b² = c²  →  Alta leggibilità senza riverbero';
+                advice.className = 'text-xs text-slate-700 mt-2 max-w-3xl leading-relaxed font-medium';
+                advice.innerHTML = '<strong>Perché usarlo:</strong> Il bianco puro abbagliante affatica la vista e riduce la velocità di lettura negli studenti con dislessia. Lo sfondo crema con righe tenui rilassa la vista di tutta la classe.';
+                footer.className = 'text-[11px] text-slate-600';
+            } else if (bgType === 'math') {
+                board.classList.add('bg-grid-math');
+                tag.textContent = 'Sfondo Matematica, Fisica, Geometria e Discalculia';
+                sample.className = 'text-lg sm:text-xl font-bold text-blue-900 tracking-wide font-mono';
+                sample.textContent = 'f(x) = 2x + 3   |   Incolonnamento guidato e Piano Cartesiano';
+                advice.className = 'text-xs text-slate-700 mt-2 max-w-3xl leading-relaxed font-medium';
+                advice.innerHTML = '<strong>Perché usarlo:</strong> La quadrettatura aiuta gli alunni con discalculia o difficoltà prassiche a mantenere l\'allineamento verticale delle cifre, tracciare assi cartesiani precisi e usare righello e goniometro integrati.';
+                footer.className = 'text-[11px] text-slate-600';
+            } else if (bgType === 'primary') {
+                board.classList.add('bg-lines-primary');
+                tag.textContent = 'Sfondo Righe Evidenziate (Scuola Primaria & Disgrafia)';
+                sample.className = 'text-lg sm:text-xl font-bold text-slate-900 tracking-wide';
+                sample.textContent = 'L\'acqua evapora e forma le nuvole. (Controllo dell\'altezza grafica)';
+                advice.className = 'text-xs text-slate-700 mt-2 max-w-3xl leading-relaxed font-medium';
+                advice.innerHTML = '<strong>Perché usarlo:</strong> Fornisce binari visivi chiari per la scrittura manuale alla lavagna, evitando che le righe salgano o scendano obliquamente.';
+                footer.className = 'text-[11px] text-slate-600';
+            } else if (bgType === 'music') {
+                board.classList.add('bg-music-staff');
+                tag.textContent = 'Sfondo Pentagramma Musicale';
+                sample.className = 'text-lg sm:text-xl font-bold text-slate-900 tracking-wide';
+                sample.textContent = '𝄞  ♩  ♫  ♬   Solfege, lettura ritmica e composizione collettiva';
+                advice.className = 'text-xs text-slate-800 bg-white/80 p-2 rounded mt-2 max-w-3xl leading-relaxed font-medium';
+                advice.innerHTML = '<strong>Perché usarlo:</strong> Consente di scrivere note con lo stilo e cancellarle col palmo senza mai cancellare le cinque righe del pentagramma sottostante!';
+                footer.className = 'text-[11px] text-slate-700';
+            } else if (bgType === 'dark') {
+                board.classList.add('bg-dark-board');
+                tag.textContent = 'Sfondo Lavagna Notturna ad Alto Contrasto';
+                sample.className = 'text-lg sm:text-xl font-bold text-amber-300 tracking-wide';
+                sample.textContent = '⚡ Contrasto Elevato (Tratto Giallo/Bianco su Blu Notte)';
+                advice.className = 'text-xs text-slate-200 mt-2 max-w-3xl leading-relaxed font-medium';
+                advice.innerHTML = '<strong>Perché usarlo:</strong> Ideale per alunni ipovedenti, aule molto illuminate dal sole o lunghe sessioni di brainstoming per massimizzare il contrasto cromatico.';
+                footer.className = 'text-[11px] text-slate-400';
+            }
+        }
+
+        // Modulo 2: Collaboration Mode Switcher (3 modalità Lumio)
+        function setEduCollabMode(mode) {
+            const modes = ['teacher', 'student', 'workspace'];
+            modes.forEach(m => {
+                const el = document.getElementById(`mode-edu-${m}`);
+                el.className = 'p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-sky-400 transition';
+            });
+
+            const activeEl = document.getElementById(`mode-edu-${mode}`);
+            const badgeEl = document.getElementById('activity-badge');
+            const titleEl = document.getElementById('activity-title');
+            const descEl = document.getElementById('activity-desc');
+
+            if (mode === 'teacher') {
+                activeEl.className = 'p-4 border-2 border-sky-500 bg-sky-50/60 rounded-xl cursor-pointer transition';
+                badgeEl.textContent = 'Modalità 1: Guida Docente (Sincrona per tutta la classe)';
+                titleEl.textContent = 'Grida Forte! (Shout It Out!) & Spiegazione Sincronizzata';
+                descEl.textContent = 'Gli studenti vedono sul proprio schermo esattamente la pagina mostrata dal docente e inviano post-it digitali con domande, parole chiave o immagini che compaiono in diretta sulla SMART Board.';
+            } else if (mode === 'student') {
+                activeEl.className = 'p-4 border-2 border-emerald-500 bg-emerald-50/60 rounded-xl cursor-pointer transition';
+                badgeEl.textContent = 'Modalità 2: Scheda Individuale (Handout al proprio ritmo)';
+                titleEl.textContent = 'Esercitazione Personalizzata con Supervisione in Tempo Reale';
+                descEl.textContent = 'Ogni studente compila la propria copia digitale della scheda al banco. Il docente apre la griglia dei nomi sulla SMART Board (o sul proprio PC) per osservare i progressi dei singoli alunni e lasciare correzioni mirate.';
+            } else if (mode === 'workspace') {
+                activeEl.className = 'p-4 border-2 border-amber-500 bg-amber-50/60 rounded-xl cursor-pointer transition';
+                badgeEl.textContent = 'Modalità 3: Spazio di Lavoro Collaborativo (Workspace a Squadre)';
+                titleEl.textContent = 'Co-Costruzione di Mappe e Problem Solving in Piccoli Gruppi';
+                descEl.textContent = 'La pagina della lavagna viene condivisa con gruppi di 3-4 studenti: tutti i membri del gruppo possono scrivere, spostare oggetti e completare la mappa contemporaneamente dai rispettivi dispositivi.';
+            }
+        }
+
+        // Modulo 3: Toggle Griglia 4 Schermi vs 1 Schermo
+        function toggleScreenGrid(count) {
+            const container = document.getElementById('wireless-grid-container');
+            const extras = document.querySelectorAll('.wireless-extra-screen');
+            const btn4 = document.getElementById('grid-btn-4');
+            const btn1 = document.getElementById('grid-btn-1');
+
+            if (count === 4) {
+                container.className = 'grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-slate-900 rounded-2xl';
+                extras.forEach(el => el.classList.remove('hidden'));
+                btn4.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white';
+                btn1.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200';
+            } else {
+                container.className = 'grid grid-cols-1 gap-3 p-6 bg-slate-900 rounded-2xl';
+                extras.forEach(el => el.classList.add('hidden'));
+                btn1.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white';
+                btn4.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200';
+            }
+        }
+
+        // Modulo 4: Selettore Libri Digitali & SMART Ink
+        function setInkScenario(scenario) {
+            const scenarios = ['webapp', 'pdf', 'magic'];
+            scenarios.forEach(s => {
+                const btn = document.getElementById(`ink-btn-${s}`);
+                btn.className = (s === scenario)
+                    ? 'p-3 rounded-xl border-2 border-sky-500 bg-white text-left transition shadow-sm'
+                    : 'p-3 rounded-xl border-2 border-slate-200 bg-white text-left hover:border-sky-300 transition';
+            });
+
+            const title = document.getElementById('ink-scenario-title');
+            const text = document.getElementById('ink-scenario-text');
+
+            if (scenario === 'webapp') {
+                title.textContent = '1. Piattaforme Libri Digitali (HUB Scuola, bSmart, myZanichelli, Sanoma)';
+                text.innerHTML = '• <strong>Per far scorrere le sottolineature insieme alla pagina del libro:</strong> tocca lo strumento <em>Matita / Evidenziatore interno alla barra dell\'applicazione del libro digitale</em> e traccia con la penna della SMART Board.<br>• <strong>Se invece scrivi con SMART Ink sopra una pagina web del libro:</strong> prima di cambiare pagina, tocca il pallino laterale di SMART Ink → <strong>📸 Cattura schermata</strong> per fissare la pagina con le tue note dentro la lavagna!';
+            } else if (scenario === 'pdf') {
+                title.textContent = '2. File PDF, Word e PowerPoint (Inchiostro Ancorato Nativamente)';
+                text.innerHTML = '• Quando apri un file <strong>PDF</strong> o una presentazione <strong>PowerPoint / documento Word</strong> sul PC, SMART Ink inietta l\'inchiostro <em>direttamente dentro il documento</em>.<br>• Puoi scorrere il PDF verso il basso con due dita o passare alla slide successiva: <strong>le tue scritte restano ancorate alla riga corrispondente</strong> e puoi salvarle nel file con un clic a fine ora.';
+            } else if (scenario === 'magic') {
+                title.textContent = '3. Strumenti Magici: Inchiostro a Scomparsa, Riflettore e Lente';
+                text.innerHTML = '• Stai mostrando un video su YouTube, Google Earth o un quadro ad alta risoluzione? Tocca il pallino fluttuante di SMART Ink e attiva la <strong>Penna con inchiostro a scomparsa</strong>.<br>• Cerchia il dettaglio mentre spieghi: dopo 4 secondi il tratto svanisce da solo lasciando lo schermo pulito per continuare la visione!';
+            }
+        }
+
+        // Modulo 5: Generatore di Attività Didattiche per Disciplina (24 Scenari Completi)
+        const activityMatrix = {
+            'stem-brainstorming': {
+                title: 'Esplorazione Visiva di Fenomeni Scientifici e Raccolta Ipotesi',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Split Screen + Grida Forte! + Pen ID',
+                steps: '1. Attiva lo <strong>Split Screen</strong>: a sinistra apri una simulazione interattiva (es. <em>PhET Colorado</em> nel browser iQ), a destra la Lavagna con sfondo a quadretti.<br>2. Lancia <strong>Grida Forte! (Shout It Out!)</strong> chiedendo agli studenti di inviare dal banco la loro ipotesi su cosa accadrà variando un parametro fisico/matematico.<br>3. Raggruppa le ipotesi con il dito sulla lavagna e verifica sperimentalmente nel browser.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Usa un codice colore fisso sulla lavagna (Blu = Dati noti, Rosso = Incognita/Ipotesi, Verde = Formula) e converti il risultato in font stampato con OCR.'
+            },
+            'stem-cooperative': {
+                title: 'Laboratorio degli Errori e Risoluzione Parallela con Pen ID',
+                time: '⏱️ 25 min',
+                tools: '🛠️ Sfondo Cartesiano + Pen ID + Goniometro/Righello',
+                steps: '1. Imposta lo sfondo <strong>Quadretti / Piano Cartesiano</strong> e dividi la pagina in due colonne.<br>2. Chiama due portavoce di gruppi diversi a risolvere lo stesso problema con due metodi differenti usando contemporaneamente la penna Blu e la penna Rossa (<strong>Pen ID</strong>).<br>3. Usa <strong>Righello, Squadra e Goniometro digitali</strong> per la verifica geometrica insieme alla classe.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> La quadrettatura guida l\'incolonnamento per gli alunni con discalculia; a fine esercizio esporta il PDF con entrambi i procedimenti svolti.'
+            },
+            'stem-assessment': {
+                title: 'Sfida Gamificata sulle Formule e Diagnostica degli Errori',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Lumio Monster Quiz + Ink-to-Math',
+                steps: '1. Avvia un <strong>Monster Quiz</strong> o un sondaggio rapido su <code>hellosmart.com</code> con 5 quesiti a scelta multipla su equazioni o leggi fisiche.<br>2. Al termine, apri il report delle risposte e proietta sulla SMART Board solo i 2 quesiti con la percentuale più alta di errori.<br>3. Risolvi i passaggi critici usando il riconoscimento matematico.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Imposta il quiz in modalità senza limite di tempo stringente o a squadre miste per azzerare l\'ansia da prestazione.'
+            },
+            'stem-flipped': {
+                title: 'Registrazione di Micro-Pillole Risolutive (5 Minuti)',
+                time: '⏱️ 10 min',
+                tools: '🛠️ Registratore Schermo iQ + Microfoni Integrati',
+                steps: '1. Apri la Lavagna iQ con il testo dell\'esercizio guida e avvia il widget <strong>Registra Schermo</strong>.<br>2. Svolgi i passaggi passo-passo commentando ad alta voce i calcoli (l\'array microfonico della MX cattura la voce chiaramente).<br>3. Salva il video MP4 direttamente su Google Drive / Classroom per lo studio a casa.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Gli studenti con DSA possono riascoltare il procedimento a casa mettendo in pausa o rallentando il video nei passaggi algebrici complessi.'
+            },
+            'humanities-brainstorming': {
+                title: 'Analisi delle Fonti e Costruzione Mappa Argomentativa (Debate)',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Split Screen + Grida Forte! + Mappa Concettuale',
+                steps: '1. Proietta in <strong>Split Screen</strong> un documento storico o un articolo di attualità a sinistra e una tabella <em>Pro / Contro</em> a destra.<br>2. Gli studenti inviano via <strong>Grida Forte!</strong> una tesi a favore e una contro.<br>3. Due moderatori alla lavagna trascinano i post-it col dito nelle colonne e collegano i nessi causali con le penne.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Usa lo sfondo crema anti-riverbero e trasforma i titoli delle categorie con la funzione "Converti in testo" (OCR).'
+            },
+            'humanities-cooperative': {
+                title: 'Analisi del Testo Poetico/Narrativo a Colori Simultanei',
+                time: '⏱️ 25 min',
+                tools: '🛠️ Libri Digitali + SMART Ink + Pen ID',
+                steps: '1. Apri la pagina del brano sul libro digitale o in PDF.<br>2. Due studenti lavorano contemporaneamente alla SMART Board: chi ha la <strong>Penna Rossa</strong> individua le figure retoriche (o i verbi reggenti), chi ha la <strong>Penna Blu</strong> sottolinea i campi semantici (o le subordinate).<br>3. Cattura la schermata nella lavagna per aggiungere il commento collettivo a margine.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Usa la Tendina (Screen Shade) per mostrare una sola strofa o capoverso alla volta durante la lettura ad alta voce.'
+            },
+            'humanities-assessment': {
+                title: 'Riordino Cronologico e Verifica Rapida del Lessico',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Attività Classifica / Linea del Tempo + Screen Shade',
+                steps: '1. Crea sulla Lavagna iQ 6 blocchi mobili con eventi storici o fasi filosofiche in ordine sparso.<br>2. Chiama gli studenti a trascinare con il dito i blocchi lungo la linea del tempo e a svelare le date nascoste sotto la <strong>Tendina</strong>.<br>3. Verifica la comprensione con un rapido abbinamento <em>Match \'Em Up</em>.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Associa a ogni blocco testuale un\'immagine o icona evocativa cercata dal pannello web integrato.'
+            },
+            'humanities-flipped': {
+                title: 'Confronto dei Lavori di Ricerca a 4 Schermi (Wireless)',
+                time: '⏱️ 30 min',
+                tools: '🛠️ Condivisione Schermo 2x2 + Annotazione Live',
+                steps: '1. I 4 gruppi preparano a casa o ai banchi una sintesi su quattro aspetti di un periodo storico o autore.<br>2. I portavoce trasmettono contemporaneamente i 4 tablet/PC sulla SMART Board MX in <strong>vista griglia 2x2</strong>.<br>3. Il docente evidenzia punti di forza e collegamenti direttamente sopra i 4 schermi.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Esporta le sintesi annotate in un unico fascicolo PDF condiviso via QR Code prima del suono della campanella.'
+            },
+            'languages-brainstorming': {
+                title: 'Warm-Up Lessicale e Role-Play con Dadi e Immagini',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Widget Dadi Personalizzati + Ricerca Immagini',
+                steps: '1. Inserisci sulla Lavagna iQ due <strong>Dadi interattivi</strong>: sul primo imposta i luoghi/contesti (Airport, Hotel, Hospital), sul secondo i tempi verbali o le funzioni comunicative.<br>2. Gli studenti lanciano i dadi toccando lo schermo e improvvisano in coppia un breve dialogo in lingua.<br>3. Annota i nuovi vocaboli emersi e convertili con OCR.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Lascia visibile in un angolo della lavagna una banca parole (Word Bank) con le strutture frasali di supporto.'
+            },
+            'languages-cooperative': {
+                title: 'Comprensione Audiovisiva Attiva su Video Autentici',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Browser YouTube Senza Pubblicità + Inchiostro su Video',
+                steps: '1. Inserisci nella Lavagna iQ un video in lingua originale (il lettore integrato rimuove pubblicità e commenti).<br>2. Metti in pausa nei momenti chiave: gli studenti vengono alla lavagna per cerchiare dettagli visivi e trascrivere le espressioni idiomatiche direttamente sopra il fotogramma.<br>3. Cattura i fotogrammi annotati come flashcard visive.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Attiva i sottotitoli sul video e usa l\'Inchiostro a scomparsa per guidare l\'attenzione senza coprire il testo.'
+            },
+            'languages-assessment': {
+                title: 'Cloze Test Interattivo e Sfida di Vocabolario (Flip Out)',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Scheda Handout Lumio + Flip Out Cards',
+                steps: '1. Invia agli smartphone/tablet della classe una scheda <strong>Handout</strong> con un testo bucato (Cloze) o frasi da riordinare.<br>2. Concludi con un set di carte <strong>Flip Out</strong> sulla SMART Board: gli studenti toccano la carta per indovinare la traduzione o il phrasal verb prima che si giri.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Fornisci le parole da inserire come etichette trascinabili col dito invece di richiedere la digitazione ortografica completa.'
+            },
+            'languages-flipped': {
+                title: 'Podcast / Pronuncia Guidata con Registrazione Audio-Video',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Registra Schermo + Evidenziatore Fonetico',
+                steps: '1. Proietta un dialogo in L2 sullo sfondo crema.<br>2. Avvia <strong>Registra Schermo</strong> mentre leggi il brano con pronuncia lenta e sottolinei con l\'evidenziatore gli accenti tonici e le parole mute.<br>3. Condividi la clip su Classroom affinché gli studenti possano esercitarsi nello speaking a casa.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Fondamentale per gli studenti dislessici che necessitano dell\'abbinamento visivo-uditivo per le lingue non trasparenti come l\'inglese.'
+            },
+            'arts-brainstorming': {
+                title: 'Esplorazione Immersiva di un\'Opera d\'Arte o Carta Geografica',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Riflettore (Spotlight) + Zoom Multi-Touch 4K',
+                steps: '1. Carica un\'opera d\'arte o una carta geografica ad alta risoluzione (4K) sulla lavagna.<br>2. Attiva il <strong>Riflettore (Spotlight)</strong> mostrando solo un piccolo particolare nascosto e chiedi alla classe di formulare ipotesi su epoca, soggetto o territorio.<br>3. Allarga il cono di luce e usa due dita (<em>pinch-to-zoom</em>) per esplorare le pennellate o i rilievi.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Il Riflettore elimina ogni distrazione periferica, aiutando gli alunni con ADHD o difficoltà attentive a focalizzarsi sul dettaglio.'
+            },
+            'arts-cooperative': {
+                title: 'Stratificazione: Linee di Forza, Prospettiva e Carte Mute',
+                time: '⏱️ 25 min',
+                tools: '🛠️ Blocca Immagine come Sfondo + Righello + Pen ID',
+                steps: '1. Inserisci una carta geografica muta, una tavola anatomica o la foto di un edificio storico, toccala e scegli <strong>Blocca (Lock)</strong>.<br>2. Due studenti tracciano sopra l\'immagine bloccata le linee di fuga prospettiche (con il righello digitale) o etichettano organi/fiumi/catene montuose.<br>3. Passando il palmo cancellano solo le scritte senza mai spostare o cancellare l\'immagine sottostante!',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Prepara etichette di testo già scritte ai lati dello schermo che gli alunni possano semplicemente trascinare col dito nei punti giusti.'
+            },
+            'arts-assessment': {
+                title: 'Riconoscimento Visivo e Lettura su Pentagramma',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Sfondo Pentagramma + Abbinamento Immagini',
+                steps: '1. In Musica: imposta lo sfondo <strong>Pentagramma</strong> e fai posizionare le note con il dito o lo stilo durante il dettato melodico.<br>2. In Arte/Scienze: usa il template <em>Label Reveal</em> per interrogare la classe scoprendo i nomi delle parti anatomiche o architettoniche con un tocco.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Abbina colori diversi alle note musicali (es. Do = Rosso, Re = Arancione) sfruttando la tavolozza rapida.'
+            },
+            'arts-flipped': {
+                title: 'Tour Virtuale Annotato con Google Earth Web e Cattura',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Browser Chromium + Google Earth + Cattura Schermata',
+                steps: '1. Apri <strong>Google Earth Web</strong> o un museo virtuale nel browser integrato iQ.<br>2. Gli studenti guidano il volo 3D toccando lo schermo, mettono in pausa sulla morfologia del territorio e usano <strong>SMART Ink</strong> per disegnare frecce e schemi.<br>3. Cattura le tappe del viaggio nella lavagna per generare il diario di bordo in PDF.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> L\'apprendimento visivo-spaziale 3D sostituisce lunghe descrizioni verbali astratte.'
+            },
+            'support-brainstorming': {
+                title: 'Costruzione Visiva di Mappe Mentali con Immagini Trascinabili',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Ricerca Immagini Sicura + Object Awareness + OCR',
+                steps: '1. Scrivi al centro della lavagna (sfondo crema) l\'argomento del giorno e convertilo in stampato maiuscolo con <strong>OCR</strong>.<br>2. Apri il pannello laterale di ricerca immagini (filtrato SafeSearch) e fai trascinare agli studenti con il dito le foto associate ai concetti.<br>3. Collega le immagini con frecce spesse colorate.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> La manipolazione diretta con il dito (senza mediazione del mouse) valorizza la memoria cinestetica e visiva.'
+            },
+            'support-cooperative': {
+                title: 'Peer Tutoring alla Lavagna: Coppia Eterogenea con Pen ID',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Pen ID + Oggetti Manipolabili + Timer Visivo',
+                steps: '1. Progetta un\'attività in coppia alla lavagna: uno studente legge o trascina con il dito le tessere della sequenza logica, mentre il compagno tutor scrive i connettivi con la penna.<br>2. Imposta il <strong>Timer visivo</strong> per dare una scansione temporale rassicurante e prevedibile.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Regola l\'altezza dell\'area di scrittura nella metà inferiore dello schermo per renderla comodamente raggiungibile anche da studenti in carrozzina o più bassi.'
+            },
+            'support-assessment': {
+                title: 'Verifica Formativa Senza Ansia tramite Carte e Associazioni',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Match \'Em Up + Super Sort + Feedback Immediato',
+                steps: '1. Utilizza l\'attività <strong>Super Sort</strong> (classificazione in due categorie) sulla SMART Board.<br>2. Lo studente trascina col dito l\'elemento nel contenitore corretto: se è esatto viene accettato con un\'animazione positiva, se è errato rimbalza indietro permettendo l\'autocorrezione immediata senza giudizio negativo.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> L\'autocorrezione gamificata sostiene l\'autostima e trasforma l\'errore in un tentativo naturale del gioco.'
+            },
+            'support-flipped': {
+                title: 'Quaderno Digitale di Classe Sempre Accessibile via QR Code',
+                time: '⏱️ 10 min',
+                tools: '🛠️ Esportazione PDF + QR Code + Registrazione Audio',
+                steps: '1. Raccogli nelle pagine della Lavagna iQ gli schemi semplificati prodotti durante la settimana.<br>2. Aggiungi una breve sintesi vocale registrata con <strong>Registra Schermo</strong>.<br>3. Esporta il PDF e caricalo nella cartella condivisa per garantire allo studente assente o con PDP il materiale identico a quello spiegato in classe.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Garantisce piena coerenza tra quanto visto in aula e quanto studiato a casa con il docente di sostegno o la famiglia.'
+            },
+            'primary-brainstorming': {
+                title: 'Routine del Mattino, Calendario e Alfabetizzazione Tattile',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Righe Primaria + Trascinamento col Dito + Ruota Nomi',
+                steps: '1. Apri la pagina del calendario interattivo e gira la <strong>Ruota dei Nomi</strong> sulla SMART Board per sorteggiare l\'aiutante del giorno.<br>2. I bambini trascinano con il dito i simboli del meteo, contano gli elementi per formare le decine e tracciano la parola del giorno sulle <strong>righe evidenziate</strong>.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Usa caratteri grandi in stampato maiuscolo e abbina sempre la parola scritta al pittogramma corrispondente.'
+            },
+            'primary-cooperative': {
+                title: 'Stazioni di Gioco Didattico con Multi-Touch a 4 Bambini',
+                time: '⏱️ 20 min',
+                tools: '🛠️ Multi-Touch Simultaneo + Dadi + Palmo Gomma',
+                steps: '1. Dividi il grande schermo 4K in 4 quadranti nella parte bassa del pannello.<br>2. Quattro bambini contemporaneamente risolvono piccole addizioni, collegano parole-immagini o disegnano con le dita e le penne.<br>3. Al segnale, cancellano con il palmo della mano e lasciano il posto ai compagni.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Il lavoro simultaneo di 4 alunni evita che un singolo bambino si senta esposto da solo davanti a tutta la classe.'
+            },
+            'primary-assessment': {
+                title: 'Caccia all\'Intruso e Giochi di Classificazione',
+                time: '⏱️ 15 min',
+                tools: '🛠️ Riflettore + Gomma per Svelare + Super Sort',
+                steps: '1. Nascondi la soluzione o l\'immagine misteriosa sotto uno strato di inchiostro colorato.<br>2. I bambini rispondono al quesito e vengono alla lavagna a passare il <strong>palmo della mano</strong> come un "gratta e vinci" per scoprire se la risposta nascosta sotto è corretta!',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Effetto sorpresa ad altissima motivazione che mantiene viva l\'attenzione di tutta la classe.'
+            },
+            'primary-flipped': {
+                title: 'Storytelling Illustrato e Audio-Fiaba di Classe',
+                time: '⏱️ 25 min',
+                tools: '🛠️ Disegno Collettivo + Registra Schermo e Voce',
+                steps: '1. Ogni gruppo di bambini illustra una scena della storia su una pagina diversa della Lavagna iQ.<br>2. Attiva <strong>Registra Schermo</strong> mentre sfogli le pagine e i bambini raccontano a turno la storia con la propria voce.<br>3. Esporta il video-racconto per condividerlo con le famiglie.',
+                bes: '♿ <strong>Accorgimento BES/DSA:</strong> Valorizza l\'espressione orale e grafica anche per gli alunni con difficoltà di letto-scrittura o neo-arrivati (NAI).'
+            }
+        };
+
+        function generateActivity() {
+            const subject = document.getElementById('gen-subject').value;
+            const goal = document.getElementById('gen-goal').value;
+            const key = `${subject}-${goal}`;
+            const data = activityMatrix[key] || activityMatrix['stem-brainstorming'];
+
+            document.getElementById('activity-out-title').textContent = data.title;
+            document.getElementById('activity-out-time').textContent = data.time;
+            document.getElementById('activity-out-tools').textContent = data.tools;
+            document.getElementById('activity-out-steps').innerHTML = data.steps;
+            document.getElementById('activity-out-bes').innerHTML = data.bes;
+        }
+
+        // Copia negli appunti la scheda attività generata (usando document.execCommand('copy') per compatibilità iframe)
+        function copyGeneratedActivity() {
+            const title = document.getElementById('activity-out-title').innerText;
+            const time = document.getElementById('activity-out-time').innerText;
+            const tools = document.getElementById('activity-out-tools').innerText;
+            const steps = document.getElementById('activity-out-steps').innerText;
+            const bes = document.getElementById('activity-out-bes').innerText;
+
+            const fullText = `ATTIVITÀ DIDATTICA SMART BOARD MX\nTitolo: ${title} (${time} | ${tools})\n\nProcedura Operativa:\n${steps}\n\n${bes}`;
+
+            const tempArea = document.createElement('textarea');
+            tempArea.value = fullText;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Scheda attività copiata! Puoi incollarla nel tuo piano di lezione.');
+            } catch (err) {
+                showToast('Impossibile copiare automaticamente.');
+            }
+            document.body.removeChild(tempArea);
+        }
+
+        // Modulo 5: SOS Diagnostica Rapida (Con filtri per categoria e ricerca)
+        let currentDiagCategory = 'all';
+
+        const eduDiagnosticsData = [
+            {
+                cat: 'touch',
+                issue: "Vedo lo schermo del mio PC sulla lavagna, ma se tocco il vetro non succede nulla.",
+                cause: "È collegato solo il cavo video (HDMI), ma manca il cavo USB per il segnale Touch.",
+                solution: "Collega anche il <strong>cavo USB-B (Touch)</strong> tra il PC e la porta <em>Touch USB</em> corrispondente all'HDMI usato (es. HDMI 1 richiede Touch USB 1). Se usi <strong>USB-C</strong>, un solo cavo trasmette tutto."
+            },
+            {
+                cat: 'touch',
+                issue: "Prendo la penna per scrivere, ma invece di scrivere sposta la pagina (o scrive col dito).",
+                cause: "Un oggetto (foglio, post-it, polvere) ostruisce la cornice interna o l'altra penna è appoggiata male.",
+                solution: "Controlla che lungo il bordo interno della cornice non ci siano foglietti o cancellini appoggiati che bloccano i sensori ottici <em>HyPr Touch</em>. Riponi entrambe le penne e sollevane una."
+            },
+            {
+                cat: 'audio',
+                issue: "Il video su YouTube o sul libro digitale parte dal PC, ma non si sente l'audio in classe.",
+                cause: "Windows sta inviando l'audio alle casse del portatile invece che alla SMART Board.",
+                solution: "Clicca sull'icona dell'altoparlante in basso a destra sul PC (accanto all'orologio) e seleziona <strong>SMART Board / Display Audio</strong> come uscita audio. Controlla anche il volume fisico sotto la lavagna."
+            },
+            {
+                cat: 'video',
+                issue: "Schermo nero o messaggio 'Nessun Segnale' (No Signal) quando collego il PC.",
+                cause: "È selezionato il canale Input sbagliato sulla lavagna o il PC non sta duplicando lo schermo.",
+                solution: "Premi il tasto fisico <strong>Input</strong> sulla barra frontale della SMART Board e scegli la porta illuminata in verde (es. HDMI 1 o USB-C). Sul PC premi <code>Win + P</code> e scegli <strong>Duplica</strong>."
+            },
+            {
+                cat: 'touch',
+                issue: "Sottolineo il libro digitale sul PC, ma appena scorro la pagina le scritte restano ferme.",
+                cause: "Stai scrivendo sullo strato trasparente superiore invece che dentro l'app del libro o PDF.",
+                solution: "Su <strong>HUB Scuola / bSmart</strong> attiva la matita interna del libro digitale; oppure prima di scorrere tocca il pallino di SMART Ink e premi <strong>📸 Cattura schermata</strong> per salvare la pagina annotata nella lavagna."
+            },
+            {
+                cat: 'wireless',
+                issue: "Non riesco a trasmettere lo schermo del tablet/PC in Wireless (Screen Share).",
+                cause: "Il dispositivo personale e la SMART Board sono su due reti Wi-Fi diverse (es. Wi-Fi Ospiti vs LAN).",
+                solution: "Collega entrambi alla stessa rete scolastica, oppure apri l'app <strong>Condivisione Schermo</strong> sulla lavagna e inserisci sul tuo dispositivo il <strong>codice numerico di sessione</strong> mostrato a schermo."
+            },
+            {
+                cat: 'touch',
+                issue: "Il tratto della penna appare spostato di qualche centimetro rispetto alla punta.",
+                cause: "Il formato d'immagine del PC non è impostato in 16:9 oppure serve ricalibrare l'orientamento.",
+                solution: "Imposta la risoluzione del PC su <strong>1920x1080 (o 3840x2160)</strong> in formato 16:9, oppure apri <em>SMART Settings → Orientamento</em> sul PC per toccare i bersagli di calibrazione."
+            },
+            {
+                cat: 'wireless',
+                issue: "Ho finito la lezione e non voglio lasciare il mio Google Drive o Registro aperto al collega.",
+                cause: "Account lasciato attivo sulla lavagna iQ o sul browser.",
+                solution: "Sulla schermata Home di iQ tocca l'icona del tuo profilo in alto a sinistra e premi <strong>Esci (Logout)</strong>: tutte le sessioni cloud si chiudono istantaneamente."
+            }
+        ];
+
+        function populateEduDiagnosticsTable(items) {
+            const tbody = document.getElementById('edu-diag-table-body');
+            tbody.innerHTML = '';
+            if (items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="px-4 py-6 text-center text-slate-400">Nessun risultato trovato. Prova con un termine diverso (es. touch, audio, cavo, libro).</td></tr>`;
+                return;
+            }
+            items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-bold text-slate-900 align-top">${item.issue}</td>
+                    <td class="px-4 py-3 text-slate-600 align-top">${item.cause}</td>
+                    <td class="px-4 py-3 text-slate-800 bg-sky-50/50 align-top leading-relaxed">${item.solution}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function setDiagCategory(cat) {
+            currentDiagCategory = cat;
+            const cats = ['all', 'touch', 'video', 'audio', 'wireless'];
+            cats.forEach(c => {
+                const btn = document.getElementById(`diag-cat-${c}`);
+                btn.className = (c === cat)
+                    ? 'px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white'
+                    : 'px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200';
+            });
+            filterEduDiagnostics();
+        }
+
+        function filterEduDiagnostics() {
+            const query = document.getElementById('edu-diag-search').value.toLowerCase();
+            const filtered = eduDiagnosticsData.filter(d => {
+                const matchesCat = (currentDiagCategory === 'all') || (d.cat === currentDiagCategory);
+                const matchesQuery = d.issue.toLowerCase().includes(query) || 
+                                     d.cause.toLowerCase().includes(query) || 
+                                     d.solution.toLowerCase().includes(query);
+                return matchesCat && matchesQuery;
+            });
+            populateEduDiagnosticsTable(filtered);
+        }
+
+        // Initialize Student Engagement Chart
+        function initEngagementChart() {
+            const ctx = document.getElementById('engagementChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Solo Proiezione Passiva',
+                        'Scrittura Duale (Pen ID)',
+                        'Brainstorming (Grida Forte!)',
+                        '4 Schermi & Gamification'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Percentuale di Coinvolgimento Attivo (%)',
+                            data: [25, 75, 90, 96],
+                            backgroundColor: ['#94a3b8', '#0284c7', '#16a34a', '#f59e0b'],
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Partecipazione stimata: ${context.raw}% della classe`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                font: { size: 11, weight: '600' }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Coinvolgimento Attivo %',
+                                font: { size: 11 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // On DOM Load Init
+        document.addEventListener('DOMContentLoaded', () => {
+            initEngagementChart();
+            populateEduDiagnosticsTable(eduDiagnosticsData);
+            generateActivity();
+            switchTab('didattica-gesti');
+        });
+    </script>
+</body>
+</html>
